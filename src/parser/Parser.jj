@@ -80,6 +80,12 @@ TOKEN :
   |
   < SEMICOLON: ";" >
   |
+  < REF: ":=" >
+  |
+  < REREF: "::=" >
+  |
+  < DEREF: "!" >
+  |
   < PRINT: "print" >
   |
   < PRINTLN: "println" >
@@ -110,6 +116,15 @@ Exp decl():
     
 }
 
+//makes more sense for these expressions to be inside declarations then the opposite
+Exp cycle():
+{ Exp e1, e2, e3; }
+{
+	< WHILE > e1 = Exp <DO > e2 = Exp <END >{ }
+	| < IF > e1 = Exp <THEN > e2 = Exp <ELSE > e3 = Exp{ }
+	//Else part can be optional
+} 
+
 Exp bexp():
 { Exp e1, e2; }
 {
@@ -120,6 +135,9 @@ Exp bexp():
 	| <OR> e2 = bexp() { e1 = new ASTOr(e1, e2); } )*
   { return e1; }
 }
+
+//Sequential instructions should be added around here i think
+//Referencing too
 
 Exp cmp():
 { Exp e1, e2; }
@@ -167,6 +185,8 @@ Exp Fact() :
 	<LPAR> (e = expr() | e = decl()) <RPAR> { return e; }
  |
 	x = <Id> { return new ASTId(x.image, null);}
+ |
+	< DEREF > x = < Id > { return new ASTDeref(x.image) }
 }
 
 
