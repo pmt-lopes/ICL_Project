@@ -35,7 +35,7 @@ public interface ParserConstants {
   /** RegularExpression Id. */
   int OR = 15;
   /** RegularExpression Id. */
-  int NOT = 16;
+  int NEG = 16;
   /** RegularExpression Id. */
   int GR = 17;
   /** RegularExpression Id. */
@@ -67,11 +67,17 @@ public interface ParserConstants {
   /** RegularExpression Id. */
   int SEMICOLON = 31;
   /** RegularExpression Id. */
-  int PRINT = 32;
+  int REF = 32;
   /** RegularExpression Id. */
-  int PRINTLN = 33;
+  int REREF = 33;
   /** RegularExpression Id. */
-  int Id = 34;
+  int DEREF = 34;
+  /** RegularExpression Id. */
+  int PRINT = 35;
+  /** RegularExpression Id. */
+  int PRINTLN = 36;
+  /** RegularExpression Id. */
+  int Id = 37;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -110,6 +116,9 @@ public interface ParserConstants {
     "\"do\"",
     "\"end\"",
     "\";\"",
+    "\":=\"",
+    "\"::=\"",
+    "\"!\"",
     "\"print\"",
     "\"println\"",
     "<Id>",

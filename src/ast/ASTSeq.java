@@ -2,7 +2,7 @@ package ast;
 
 public class ASTSeq implements Exp{
 	
-	private Exp arg1, arg2;
+	public Exp arg1, arg2;
 	
 	public ASTSeq(Exp e1,Exp e2) {
 		this.arg1 = e1;

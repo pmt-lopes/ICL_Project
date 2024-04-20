@@ -2,16 +2,19 @@ package ast;
 
 public class ASTDeref implements Exp{
 	
-	private Exp arg;
+	private String refName;
 	
-	public ASTDeref(Exp e) {
-		this.arg = e;
+	public ASTDeref(String e) {
+		this.refName = e;
+	}
+	
+	public String getName() {
+		return this.refName;
 	}
 
 	@Override
 	public <T, E> T accept(Visitor<T, E> v, E env) {
-		// TODO Auto-generated method stub
-		return null;
+		return v.visit(this, env);
 	}
 
 }

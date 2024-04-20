@@ -48,7 +48,7 @@ TOKEN :
   |
   < OR: "||" >
   |
-  < NOT: "~" >
+  < NEG: "~" >
   |
   < GR: ">" >
   |
@@ -116,28 +116,50 @@ Exp decl():
     
 }
 
+//not tested from here
 //makes more sense for these expressions to be inside declarations then the opposite
 Exp cycle():
 { Exp e1, e2, e3; }
 {
-	< WHILE > e1 = Exp <DO > e2 = Exp <END >{ }
-	| < IF > e1 = Exp <THEN > e2 = Exp <ELSE > e3 = Exp{ }
-	//Else part can be optional
-} 
+  e1 = seq() { return e1; }
+  //should be bexp i think
+	| < WHILE > e1 = bexp() <DO > e2 = seq() <END >{ return new ASTWhile(e1, e2); }
+	| < IF > e1 = bexp() <THEN > e2 = seq() (<ELSE > e3 = seq() { return new ASTIf(e1, e2, e3); })? <END> { return new ASTIf(e1, e2); }
+}
+
+
+//Sequential instructions should be added around here i think
+//Referencing too
+
+Exp seq():
+{ Exp e1, e2; }
+{
+	e1 = ref() (
+	  <SEMICOLON> e2 = seq() { e1 = new ASTSeq(e1, e2); }
+	)?
+	{ return e1; }
+}
+
+Exp ref():
+{ Exp e1; Token x; }
+{
+  
+  x = <Id> <REF> e1 = bexp() { return new ASTRef(x.image, e1); }
+  | 
+  e1 = bexp() { return e1; } 
+}
+// Not tested until here
 
 Exp bexp():
 { Exp e1, e2; }
 {
-  <NOT> e2 = bexp() { e1 = new ASTNot(e2); }
+  <NEG> e2 = bexp() { e1 = new ASTNeg(e2); }
 	| 
   e1 = cmp() (
 	<AND> e2 = bexp() { e1 = new ASTAnd(e1, e2); }
 	| <OR> e2 = bexp() { e1 = new ASTOr(e1, e2); } )*
   { return e1; }
 }
-
-//Sequential instructions should be added around here i think
-//Referencing too
 
 Exp cmp():
 { Exp e1, e2; }
@@ -186,7 +208,7 @@ Exp Fact() :
  |
 	x = <Id> { return new ASTId(x.image, null);}
  |
-	< DEREF > x = < Id > { return new ASTDeref(x.image) }
+	< DEREF > x = < Id > { return new ASTDeref(x.image); }
 }
 
 

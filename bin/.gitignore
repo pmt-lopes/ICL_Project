@@ -1,4 +1,3 @@
-/values/
-/types/
-/ast/
 /parser/
+/interpreter/
+/ast/
