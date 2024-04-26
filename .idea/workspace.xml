@@ -8,7 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/Parser.jj" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.jj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +87,7 @@
       <updated>1713347935619</updated>
       <workItem from="1713984748135" duration="3493000" />
       <workItem from="1714150995381" duration="2313000" />
-      <workItem from="1714155728751" duration="4563000" />
+      <workItem from="1714155728751" duration="5044000" />
     </task>
     <servers />
   </component>
