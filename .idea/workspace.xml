@@ -5,12 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f0c5056-0892-493d-b29b-2c0d9552a991" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/ICL_Project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/values/ValueList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTAdd.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTAdd.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTAnd.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTAnd.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTBool.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTBool.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTEq.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTEq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTGr.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTGr.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTGrE.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTGrE.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTId.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTId.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTInt.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTInt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTLet.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTLet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTOr.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTOr.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTSub.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTSub.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/Exp$Visitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/Exp$Visitor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/Exp.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/Exp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interpreter/Interpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/interpreter/Interpreter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interpreter/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interpreter/Interpreter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/values/Value.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/values/Value.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Console.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Console.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/ParseException.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/ParseException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/ParseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/ParseException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/Parser.jj" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.jj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/ParserConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/ParserConstants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/ParserConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/ParserConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/ParserTokenManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/ParserTokenManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/ParserTokenManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/ParserTokenManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/SimpleCharStream.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SimpleCharStream.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/SimpleCharStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SimpleCharStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/Token.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Token.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/TokenMgrError.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/TokenMgrError.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/TokenMgrError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/TokenMgrError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/symbols/Env.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/symbols/Env.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/values/IntValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/values/IntValue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/values/Value.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/values/Value.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,28 +59,56 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2fDuNGCLodDSODOFv3ESLUCh10h" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/pmtbl/Desktop/icl_project/ICL_Project",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Console.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/pmtbl/Desktop/icl_project/ICL_Project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager">
+    <configuration name="Console" type="Application" factoryName="Application" editBeforeRun="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Console" />
+      <module name="ICL_Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -61,6 +118,8 @@
       <option name="presentableId" value="Default" />
       <updated>1713347935619</updated>
       <workItem from="1713984748135" duration="3493000" />
+      <workItem from="1714150995381" duration="2313000" />
+      <workItem from="1714155728751" duration="4401000" />
     </task>
     <servers />
   </component>

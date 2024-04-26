@@ -72,7 +72,7 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 	public Value visit(ASTNEq e, Env<Value> env) {
 		IntValue n1 = (IntValue) e.arg1.accept(this, env);
 		IntValue n2 = (IntValue) e.arg2.accept(this, env);
-		return new BoolValue(n1.getValue() != n2.getValue());
+		return new BoolValue(n1.getValue() == n2.getValue());
 	}
 
 	@Override
@@ -199,7 +199,7 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 			return ((BoolValue) value).getValue();
 		} else {
 			//return error?
-			return false;
+			return false; //todo:write exception to this
 		}
 	}
 	
