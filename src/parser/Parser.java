@@ -166,7 +166,7 @@ public class Parser implements ParserConstants {
     case NEG:
       jj_consume_token(NEG);
       e2 = bexp();
-                      e1 = new ASTNeg(e2);
+                      {if (true) return new ASTNeg(e2);}
       break;
     case Num:
     case MINUS:
@@ -373,7 +373,7 @@ public class Parser implements ParserConstants {
     case TRUE:
     case FALSE:
       e = bool();
-                     System.out.println(((ASTBool)e).value + " THIS IS VALUE"); {if (true) return e;}
+                     {if (true) return e;}
       break;
     case LPAR:
       jj_consume_token(LPAR);

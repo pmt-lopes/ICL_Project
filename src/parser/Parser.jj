@@ -154,7 +154,7 @@ Exp ref():
 Exp bexp():
 { Exp e1, e2; }
 {
-  <NEG> e2 = bexp() { e1 = new ASTNeg(e2); }
+  <NEG> e2 = bexp() { return new ASTNeg(e2); }
 	| 
   e1 = cmp() (
 	<AND> e2 = bexp() { e1 = new ASTAnd(e1, e2); }
