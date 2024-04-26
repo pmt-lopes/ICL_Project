@@ -4,6 +4,9 @@ import ast.*;
 import symbols.Env;
 import values.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 
 	@Override
@@ -178,11 +181,16 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 
 	@Override
 	public Value visit(ASTWhile e, Env<Value> env) {
+		List<Value> resultValues = new ArrayList<>(); // Store values from each iteration
+
 		while(evalCondition(e.arg1, env)) {
-			e.arg2.accept(this, env);
+			Value result = e.arg2.accept(this, env);
 			//not sure how to return all values
+			if(result != null){
+				resultValues.add(result);
+			}
 		}
-		return null;
+		return new ValueList(resultValues);
 	}
 	
 	private boolean evalCondition(Exp cond, Env<Value> env) {
