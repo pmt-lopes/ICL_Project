@@ -1,4 +1,2 @@
-/parser/
-/interpreter/
-/ast/
-/types/
+/compiler/
+/target/
