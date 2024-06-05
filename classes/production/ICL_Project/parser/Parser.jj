@@ -121,10 +121,10 @@ Exp decl():
 Exp cycle():
 { Exp e1, e2, e3; }
 {
-  e1 = seq() { return e1; }
+  //e1 = seq() { return e1; }
   //should be bexp i think
-	| < WHILE > e1 = bexp() <DO > e2 = seq() <END >{ return new ASTWhile(e1, e2); }
-	| < IF > e1 = bexp() <THEN > e2 = seq() (<ELSE > e3 = seq() { return new ASTIf(e1, e2, e3); })? <END> { return new ASTIf(e1, e2); }
+  < WHILE > e1 = bexp() < DO > e2 = seq() < END >{ return new ASTWhile(e1, e2); }
+	| < IF > e1 = bexp() <THEN > e2 = seq() (< ELSE > e3 = seq() { return new ASTIf(e1, e2, e3); })? <END> { return new ASTIf(e1, e2); }
 }
 
 
@@ -150,15 +150,24 @@ Exp ref():
 }
 // Not tested until here
 
+// describes boolean expressions
 Exp bexp():
 { Exp e1, e2; }
 {
-  <NEG> e2 = bexp() { e1 = new ASTNeg(e2); }
+  <NEG> e2 = bexp() { return new ASTNeg(e2); }
 	| 
   e1 = cmp() (
 	<AND> e2 = bexp() { e1 = new ASTAnd(e1, e2); }
 	| <OR> e2 = bexp() { e1 = new ASTOr(e1, e2); } )*
   { return e1; }
+}
+
+Exp bool():
+{Token x;}
+{
+    x = <TRUE> { return new ASTBool(true); }
+     |
+    x = <FALSE> { return new ASTBool(false); }
 }
 
 Exp cmp():
@@ -200,10 +209,8 @@ Exp Fact() :
  |
  	<MINUS> x = <Num> { return new ASTInt(-Integer.parseInt(x.image));} 
  | 
- 	x = <TRUE> { return new ASTBool(Boolean.parseBoolean(x.image)); }
+ 	e = bool() { return e; }
  |
- 	x = <FALSE> { return new ASTBool(Boolean.parseBoolean(x.image)); }
- |  
 	<LPAR> (e = expr() | e = decl()) <RPAR> { return e; }
  |
 	x = <Id> { return new ASTId(x.image, null);}

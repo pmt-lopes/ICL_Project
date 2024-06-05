@@ -1,6 +1,10 @@
 package ast;
 
 
+import symbols.Env;
+import types.Type;
+import values.Value;
+
 public interface Exp {
 	
 	public interface Visitor<T,E> {
@@ -25,6 +29,8 @@ public interface Exp {
 		public T visit(ASTAsg e, E env);
 		public T visit(ASTSeq e, E env);
 		public T visit(ASTWhile e, E env);
+		public T visit(ASTIf e, E env);
+
 	}
 	
 	public <T,E> T accept(Visitor<T,E> v, E env);

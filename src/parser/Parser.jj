@@ -96,36 +96,50 @@ TOKEN :
 Exp Start():
 { Exp e; }
 {
-   e = decl() <EL>  { return e; }
+   e = statement() <EL>  { return e; }
+}
+
+Exp statement():
+{ Exp e; }
+{
+    e = decl()
+    | e = whileStatement()
+    | e = ifStatement()
+    | e = expr()
+    {return e;}
 }
 
 Exp decl():
 { List<Exp> bindings = new ArrayList<Exp>();Token id; Exp e, e1, e2; }
 {
   <LET> (
-    id = <Id> <EQ> e1 = bexp() { bindings.add(new ASTId(id.image, e1)); }
-  )+ <IN> e2 = bexp() {
+    id = <Id> <EQ> e1 = boolExp() { bindings.add(new ASTId(id.image, e1)); }
+  )+ <IN> e2 = boolExp() {
     ASTLet letExpr = new ASTLet();
     letExpr.setBindings(bindings);
     letExpr.setBody(e2);
     e = letExpr;
     return e;
     }
-  | e = bexp()
+  | e = boolExp()
   { return e;}
     
 }
 
 //not tested from here
 //makes more sense for these expressions to be inside declarations then the opposite
-Exp cycle():
-{ Exp e1, e2, e3; }
+Exp whileStatement():
+{ Exp cond, doStatement; }
 {
-  e1 = seq() { return e1; }
-  //should be bexp i think
-	| < WHILE > e1 = bexp() < DO > e2 = seq() < END >{ return new ASTWhile(e1, e2); }
-	| < IF > e1 = bexp() <THEN > e2 = seq() (< ELSE > e3 = seq() { return new ASTIf(e1, e2, e3); })? <END> { return new ASTIf(e1, e2); }
+  < WHILE > cond = boolExp() < DO > doStatement = seq() < END >{ return new ASTWhile(cond, doStatement); }
 }
+
+Exp ifStatement():
+{ Exp cond, thenPart; Exp elsePart = null; }
+ {
+    < IF > cond = boolExp() <THEN > thenPart = seq() (< ELSE > elsePart = seq())?
+    <END> { return new ASTIf(cond, thenPart, elsePart); }
+ }
 
 
 //Sequential instructions should be added around here i think
@@ -144,21 +158,21 @@ Exp ref():
 { Exp e1; Token x; }
 {
   
-  x = <Id> <REF> e1 = bexp() { return new ASTRef(x.image, e1); }
+  (x = <Id>) <REF> e1 = Fact() { return new ASTRef(x.image, e1); }
   | 
-  e1 = bexp() { return e1; } 
+  e1 = boolExp() { return e1; }
 }
 // Not tested until here
 
 // describes boolean expressions
-Exp bexp():
+Exp boolExp():
 { Exp e1, e2; }
 {
-  <NEG> e2 = bexp() { return new ASTNeg(e2); }
+  <NEG> e2 = boolExp() { return new ASTNeg(e2); }
 	| 
   e1 = cmp() (
-	<AND> e2 = bexp() { e1 = new ASTAnd(e1, e2); }
-	| <OR> e2 = bexp() { e1 = new ASTOr(e1, e2); } )*
+	<AND> e2 = boolExp() { e1 = new ASTAnd(e1, e2); }
+	| <OR> e2 = boolExp() { e1 = new ASTOr(e1, e2); } )*
   { return e1; }
 }
 
@@ -170,6 +184,7 @@ Exp bool():
     x = <FALSE> { return new ASTBool(false); }
 }
 
+// comparison of bool values into a single bool value
 Exp cmp():
 { Exp e1, e2; }
 {
@@ -184,6 +199,7 @@ Exp cmp():
   { return e1; }
 }
 
+// expr is either term value(bool,int,ref) or a mult/division of values or add/sub of values
 Exp expr() :
 { Exp e1, e2; }
 {
@@ -193,6 +209,7 @@ Exp expr() :
      { return e1; }
 }
 
+// term is either a value(bool,int,ref) or a mult/division of values
 Exp Term() :
 { Exp e1, e2; }
 {
@@ -202,6 +219,7 @@ Exp Term() :
      { return e1; }
 }
 
+// defined by numbers or bool values
 Exp Fact() :
 { Token x; Exp e;}
 {

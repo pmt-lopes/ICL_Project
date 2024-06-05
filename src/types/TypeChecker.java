@@ -2,6 +2,7 @@ package types;
 
 import ast.*;
 import symbols.Env;
+import values.Value;
 
 public class TypeChecker implements ast.Exp.Visitor<Type,Env<Type>>{
 
@@ -191,8 +192,28 @@ public class TypeChecker implements ast.Exp.Visitor<Type,Env<Type>>{
 
 	@Override
 	public Type visit(ASTWhile e, Env<Type> env) {
-		// TODO Auto-generated method stub
-		return null;
+		Type t1 = e.arg1.accept(this, env);
+		Type t2 = e.arg2.accept(this, env);
+		if(t1 == BoolType.getInstance()){
+			return t2;
+		}
+		else {
+			//error?
+			return null;
+		}
+	}
+
+	@Override
+	public Type visit(ASTIf e, Env<Type> env) {
+		Type t1 = e.arg1.accept(this, env);
+		Type t2 = e.arg2.accept(this, env);
+		if(t1 == BoolType.getInstance()){
+			return t2;
+		}
+		else {
+			//error?
+			return null;
+		}
 	}
 
 }

@@ -192,6 +192,14 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 		}
 		return new ValueList(resultValues);
 	}
+
+	@Override
+	public Value visit(ASTIf e, Env<Value> env) {
+		if(evalCondition(e.arg1, env)){
+			return e.arg2.accept(this, env);
+		}
+		return e.arg3.accept(this, env);
+	}
 	
 	private boolean evalCondition(Exp cond, Env<Value> env) {
 		Value value = cond.accept(this, env);
