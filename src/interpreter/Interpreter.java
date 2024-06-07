@@ -9,6 +9,10 @@ import java.util.List;
 
 public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 
+	public Interpreter() {
+
+	}
+
 	@Override
 	public Value visit(ASTInt i, Env<Value> env) {
 		return new IntValue(i.value);
@@ -63,9 +67,9 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 
 	@Override
 	public Value visit(ASTEq e, Env<Value> env) {
-		BoolValue n1 = (BoolValue) e.arg1.accept(this, env);
-		BoolValue n2 = (BoolValue) e.arg2.accept(this, env);
-		return new BoolValue(n1.getValue() == n2.getValue());
+		Value n1 = e.arg1.accept(this, env);
+		Value n2 = e.arg2.accept(this, env);
+		return new BoolValue(n1.equals(n2));
 	}
 
 	@Override
@@ -98,15 +102,15 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 	@Override
 	public Value visit(ASTLet e, Env<Value> env) {
 		env = env.beginScope();
-		for(Exp i : e.getBindings()) {
-			ASTId id = (ASTId) i;
-			String n = id.arg1;
-			Exp exp = id.arg2;
-			Value v = exp.accept(this, env);
-			env.bind(n, v);
+		List<Exp> bindings = e.getBindings();
+		for(int i = 0; i < bindings.size(); i++) {
+			Exp binding = bindings.get(i);
+			String token = e.getTokens().get(i);
+			Value val = binding.accept(this, env); // this is the bound value
+			env.bind(token, val);
 		}
 		Exp body = e.getBody();
-		Value v = body.accept(this, env);
+		Value v = body.accept(this, env); //body gets updates with current variable values (in theory...)
 		env = env.endScope();
 		return v;
 	}
@@ -135,6 +139,25 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 	}
 
 	@Override
+	public Value visit(ASTReref e, Env<Value> env) {
+		Value value = e.getValue().accept(this, env);
+		return new RefValue(value);
+	}
+
+	@Override
+	public Value visit(ASTNew e, Env<Value> env) {
+		env.beginScope();
+		String id = e.getName().toString(); // TODO: should verify if is string, maybe do .accept() on StringValue?
+		env.bind(id,null);
+		return new RefValue(env.find(id));
+	}
+
+	@Override
+	public Value visit(ASTNull e, Env<Value> env) {
+		return new VoidValue();
+	}
+
+	@Override
 	public Value visit(ASTAsg e, Env<Value> env) {
 		String refName = e.refName;
 		Value value = e.value.accept(this, env);
@@ -158,7 +181,7 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 
 	@Override
 	public Value visit(ASTDeref e, Env<Value> env) {
-		String refName = e.getName();
+		String refName = e.accept(this, env).toString();
 		Value value = env.find(refName);
 		
 		if(value != null) {
@@ -169,6 +192,34 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 		}
 		//return different error?
 		return null;
+	}
+
+	@Override
+	public Value visit(ASTPrintln e, Env<Value> env) {
+		Value text = e.accept(this, env);
+
+		if(text != null) {
+			//if(text instanceof String) {
+				System.out.println(text);
+			//}
+			//return error?
+		}
+		//return different error?
+		return new VoidValue();
+	}
+
+	@Override
+	public Value visit(ASTPrint e, Env<Value> env) {
+		Value text = e.accept(this, env);
+
+		if(text != null) {//TODO: should i verify the type?
+			//if(text instanceof String) {
+			System.out.print(text);
+			//}
+			//return error?
+		}
+		//return different error?
+		return new VoidValue();
 	}
 	
 	@Override

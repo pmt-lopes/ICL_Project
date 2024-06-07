@@ -1,11 +1,11 @@
 package ast;
 
-public class ASTRef implements Exp{
-	
+public class ASTReref implements Exp{
+
 	private Exp value;
 	private Exp refName;
-	
-	public ASTRef(Exp e1, Exp e2) {
+
+	public ASTReref(Exp e1, Exp e2) {
 		this.refName = e1;
 		this.value = e2;
 	}

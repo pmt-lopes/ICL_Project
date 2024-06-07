@@ -3,238 +3,193 @@ options {
 }
 
 PARSER_BEGIN(Parser)
-
 package parser;
 import ast.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Parser {
-
 }
 
 PARSER_END(Parser)
 
-SKIP :
+TOKEN:
 {
-  " "
-| "\t"
-| "\r"
+  <NUM: (["0"-"9"])+>
+| <PLUS: "+">
+| <MINUS: "-">
+| <TIMES: "*">
+| <DIV: "/">
+| <LPAR: "(">
+| <RPAR: ")">
+| <EL: "\n">
+| <EQ: "=">
+| <NEQ: "!=">
+| <AND: "&&">
+| <OR: "||">
+| <NEG: "~">
+| <GR: ">" >
+| <LR: "<">
+| <GRE: ">=">
+| <LRE: "<=">
+| <TRUE: "true">
+| <FALSE: "false">
+| <LET: "let">
+| <IN: "in">
+| <IF: "if">
+| <THEN: "then">
+| <ELSE: "else">
+| <WHILE: "while">
+| <DO: "do">
+| <END: "end">
+| <SEMICOLON: ";">
+| <REF: ":=">
+| <REREF: "::=">
+| <DEREF: "!">
+| <NEW: "new">
+| <PRINT: "print">
+| <PRINTLN: "println">
+| <COMMA: ",">
+| <UNIT: "unit">
+| <INT: "int">
+| <BOOL: "bool">
+| <FUN: "fun">
+| <ARROW: "->">
+| <ID: ["a"-"z","A"-"Z"] (["a"-"z","A"-"Z","0"-"9"])*>
 }
 
-TOKEN :
+SKIP:
 {
-  < Num: (["0"-"9"]) + >
-  |
-  < PLUS : "+" >
-  |
-  < MINUS : "-">
-  |
-  < TIMES : "*">
-  |
-  < DIV : "/">
-  |
-  < LPAR : "(" >
-  |
-  < RPAR : ")" >
-  |
-  < EL: "\n" >
-  |
-  < EQ: "=" >
-  |
-  < NEQ: "!=" >
-  |
-  < AND: "&&" >
-  |
-  < OR: "||" >
-  |
-  < NEG: "~" >
-  |
-  < GR: ">" >
-  |
-  < LR: "<" >
-  |
-  < GRE: ">=" >
-  |
-  < LRE: "<=" >
-  |
-  < TRUE: "true" >
-  |
-  < FALSE: "false" >
-  |
-  < LET: "let" >
-  |
-  < IN: "in" >
-  |
-  < IF: "if" >
-  |
-  < THEN: "then" >
-  |
-  < ELSE: "else" >
-  |
-  < WHILE: "while" >
-  |
-  < DO: "do" >
-  |
-  < END: "end" >
-  |
-  < SEMICOLON: ";" >
-  |
-  < REF: ":=" >
-  |
-  < REREF: "::=" >
-  |
-  < DEREF: "!" >
-  |
-  < PRINT: "print" >
-  |
-  < PRINTLN: "println" >
-  |
-  < Id: ["a"-"z","A"-"Z"] ( ["a"-"z","A"-"Z","0"-"9"] )* >
+  " " // Skipping whitespace characters
 }
 
-Exp Start():
-{ Exp e; }
-{
-   e = statement() <EL>  { return e; }
+
+
+Exp Start() : {
+  Exp exp;
 }
-
-Exp statement():
-{ Exp e; }
 {
-    e = decl()
-    | e = whileStatement()
-    | e = ifStatement()
-    | e = expr()
-    {return e;}
+  exp=seq() <EL> { return exp; }
 }
-
-Exp decl():
-{ List<Exp> bindings = new ArrayList<Exp>();Token id; Exp e, e1, e2; }
-{
-  <LET> (
-    id = <Id> <EQ> e1 = boolExp() { bindings.add(new ASTId(id.image, e1)); }
-  )+ <IN> e2 = boolExp() {
-    ASTLet letExpr = new ASTLet();
-    letExpr.setBindings(bindings);
-    letExpr.setBody(e2);
-    e = letExpr;
-    return e;
-    }
-  | e = boolExp()
-  { return e;}
-    
-}
-
-//not tested from here
-//makes more sense for these expressions to be inside declarations then the opposite
-Exp whileStatement():
-{ Exp cond, doStatement; }
-{
-  < WHILE > cond = boolExp() < DO > doStatement = seq() < END >{ return new ASTWhile(cond, doStatement); }
-}
-
-Exp ifStatement():
-{ Exp cond, thenPart; Exp elsePart = null; }
- {
-    < IF > cond = boolExp() <THEN > thenPart = seq() (< ELSE > elsePart = seq())?
-    <END> { return new ASTIf(cond, thenPart, elsePart); }
- }
-
-
-//Sequential instructions should be added around here i think
-//Referencing too
 
 Exp seq():
-{ Exp e1, e2; }
+{ Token op;
+  Exp t1, t2; }
 {
-	e1 = ref() (
-	  <SEMICOLON> e2 = seq() { e1 = new ASTSeq(e1, e2); }
-	)?
-	{ return e1; }
+     t1=ref() (  op=<SEMICOLON>  t2=ref()
+               { t1 = new ASTSeq(t1,t2); }
+               ) *
+     { return t1; }
 }
 
-Exp ref():
-{ Exp e1; Token x; }
+Exp ref() :
+{Token n;
+  Exp q1, q2;}
 {
-  
-  (x = <Id>) <REF> e1 = Fact() { return new ASTRef(x.image, e1); }
-  | 
-  e1 = boolExp() { return e1; }
-}
-// Not tested until here
+     q1 = expression() ( <REF> q2=expression()
+    			 {
+                    q1 = new ASTRef(q1,q2);
+                 }
+                  )?
+     { return q1; }
 
-// describes boolean expressions
-Exp boolExp():
-{ Exp e1, e2; }
-{
-  <NEG> e2 = boolExp() { return new ASTNeg(e2); }
-	| 
-  e1 = cmp() (
-	<AND> e2 = boolExp() { e1 = new ASTAnd(e1, e2); }
-	| <OR> e2 = boolExp() { e1 = new ASTOr(e1, e2); } )*
-  { return e1; }
 }
 
-Exp bool():
-{Token x;}
+Exp expression() : {
+  Exp left, right;
+  Token op;
+}
 {
-    x = <TRUE> { return new ASTBool(true); }
-     |
-    x = <FALSE> { return new ASTBool(false); }
+  left = term() (
+    ( op = <PLUS> | op = <MINUS>
+    | op = <EQ> | op = <NEQ> | op = <GR> | op = <GRE> | op = <LR> | op = <LRE>
+    | op = <AND> | op = <OR> )
+    right = term()
+    {
+      switch(op.kind) {
+        case PLUS: left = new ASTAdd(left, right); break;
+        case MINUS: left = new ASTSub(left, right); break;
+        case EQ: left = new ASTEq(left, right); break;
+        case NEQ: left = new ASTNEq(left, right); break;
+        case GR: left = new ASTGr(left, right); break;
+        case GRE: left = new ASTGrE(left, right); break;
+        case LR: left = new ASTGr(right, left); break;
+        case LRE: left = new ASTGrE(right, left); break;
+        case AND: left = new ASTAnd(left, right); break;
+        case OR: left = new ASTOr(left, right); break;
+      }
+    }
+  )*
+  { return left; }
 }
 
-// comparison of bool values into a single bool value
-Exp cmp():
-{ Exp e1, e2; }
+Exp term() : {
+  Exp primary, exp;
+  Token op;
+}
 {
-  e1 = expr() (
-    <EQ> e2 = expr() { e1 = new ASTEq(e1, e2); }
-    | <GR> e2 = expr() { e1 = new ASTGr(e1, e2); }
-    | <LR> e2 = expr() { e1 = new ASTGr(e2, e1); }
-    | <GRE> e2 = expr() { e1 = new ASTGrE(e1, e2); }
-    | <LRE> e2 = expr() { e1 = new ASTGrE(e2, e1); }
-    | <NEQ> e2 = expr() { e1 = new ASTNEq(e1, e2); } 
-  )?
-  { return e1; }
+  primary=primaryExpression()  (
+    (op = <TIMES> | op = <DIV>) exp=primaryExpression()
+    {
+      switch(op.kind) {
+        case TIMES: return new ASTMult(primary, exp); break;
+        case DIV: return new ASTDiv(primary, exp); break;
+      }
+    }
+  )*
+  { return primary; }
 }
 
-// expr is either term value(bool,int,ref) or a mult/division of values or add/sub of values
-Exp expr() :
-{ Exp e1, e2; }
-{
-   e1 = Term() 
-     ( <PLUS> e2 = expr() { e1 = new ASTAdd(e1,e2); }
-     | <MINUS> e2 = expr() { e1 = new ASTSub(e1,e2); } )*
-     { return e1; }
+//Exp simpleExpression() : {
+//  Exp primary, exp; Token op;
+//}
+//{
+//  primary=primaryExpression()
+//  (
+//    <REF> exp=expression() { return new ASTRef(primary, exp); }
+//    |
+//    <REREF> exp=expression() { return new ASTReref(primary, exp); }
+//    |
+//    <DEREF> exp = expression() { return new ASTDeref(exp); }
+//  )*
+//  { return primary; }
+//}
+
+
+
+Exp primaryExpression() : {
+  Token id;
+  Exp exp, exp1, exp2;
+  Exp exp3 = null;
 }
-
-// term is either a value(bool,int,ref) or a mult/division of values
-Exp Term() :
-{ Exp e1, e2; }
 {
-     e1 = Fact()
-     ( <TIMES> e2 = Term() { e1 = new ASTMult(e1,e2); }
-     | <DIV> e2 = Term() { e1 = new ASTDiv(e1,e2); } )*
-     { return e1; }
+
+    <NUM> { return new ASTInt(Integer.parseInt(token.image)); }
+    |
+    <TRUE> { return new ASTBool(true); }
+    |
+    <FALSE> { return new ASTBool(false); }
+    |
+    id=<ID> { return new ASTId(id.image, null); }
+    |
+    <MINUS> <NUM> { return new ASTInt(-Integer.parseInt(token.image)); }
+    |
+    <NEG> exp=primaryExpression() { return new ASTNeg(exp); }
+    |
+    <LET> id=<ID> <EQ> exp1=seq() <IN> exp2=seq() <END>
+    { ASTLet let = new ASTLet(); let.addToken(id.image); let.addBinding(exp1); let.setBody(exp2); return let;}
+    |
+    <IF> exp=expression() <THEN> exp1=expression() ( <ELSE> exp3=expression() )? <END> { return new ASTIf(exp, exp1, exp3); }
+    |
+    <WHILE> exp1=expression() <DO> exp2=expression() <END> { return new ASTWhile(exp1, exp2); }
+    |
+    <PRINTLN> exp=expression() { return new ASTPrintln(exp); }
+    |
+    <PRINT> exp=expression() { return new ASTPrint(exp); }
+    |
+    <NEW> exp=expression() { return new ASTNew(exp); }
+    |
+    <LPAR> (<RPAR> | exp3=expression() <RPAR>) { if(exp3 != null) return exp3; else return new ASTNull(); }
+
 }
-
-// defined by numbers or bool values
-Exp Fact() :
-{ Token x; Exp e;}
-{
-  	x = <Num> { return new ASTInt(Integer.parseInt(x.image));}
- |
- 	<MINUS> x = <Num> { return new ASTInt(-Integer.parseInt(x.image));} 
- | 
- 	e = bool() { return e; }
- |
-	<LPAR> (e = expr() | e = decl()) <RPAR> { return e; }
- |
-	x = <Id> { return new ASTId(x.image, null);}
- |
-	< DEREF > x = < Id > { return new ASTDeref(x.image); }
-}
-
-
 

@@ -2,13 +2,13 @@ package ast;
 
 public class ASTDeref implements Exp{
 	
-	private String refName;
+	private Exp refName;
 	
-	public ASTDeref(String e) {
+	public ASTDeref(Exp e) {
 		this.refName = e;
 	}
 	
-	public String getName() {
+	public Exp getName() {
 		return this.refName;
 	}
 
