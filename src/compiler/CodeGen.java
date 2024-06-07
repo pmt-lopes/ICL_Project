@@ -182,7 +182,7 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 	
 	private static StringBuilder genPreAndPost(BasicBlock block) {
 		String preamble = """
-					  .class public Demo
+					  .class public mypackage/Demo
 					  .super java/lang/Object 
 					  .method public <init>()V
 					     aload_0
