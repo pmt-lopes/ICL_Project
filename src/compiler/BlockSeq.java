@@ -29,17 +29,10 @@ public class BlockSeq {
 		currFrame = f;
 		env = env.beginScope();
 		
-		//create jasmin file for frame_id class
-		
-		//add instructions for class declaration
-		
-		//add instructions for variable fields
-		
-		//add instructions for end of declaration
-		
 		return new Pair<>(currFrame, env);
 	}
 	
+	//maybe not necessary
 	public void advanceToFrame(Frame f, CompEnv env) {
 		this.currFrame = f;
 		this.env = env;
@@ -55,9 +48,9 @@ public class BlockSeq {
 	}
 	
 	public void fetch(String id, Type t) {
-		//add instructions to call frame
-		
-		//add instructions to get element from frame
+		Pair<Integer, Integer> p = env.find(id);
+		int depth = p.getFirst();
+		int width = p.getSecond();
 	}
 
 }

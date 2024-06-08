@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import Util.Pair;
 import ast.*;
 import target.*;
+import types.*;
 
 public class CodeGen implements Exp.Visitor<Void, Void>{
 	
@@ -153,12 +154,21 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 		int count = e.getBindings().size();
 		Pair<Frame,CompEnv> p = blocks.beginScope(count);
 		Frame f = p.getFirst();
-		CompEnv newEnv = p.getSecond();
+		CompEnv env = p.getSecond();
 		for (Exp b : e.getBindings()) {
-			//emit code to store bindings in new frame
+			ASTId i = (ASTId) b;
+			Type t = i.getType();
+			int index = f.add(t) -1;
+			env.bind(i.arg1, index);
 		}
-		blocks.endScope(f,newEnv);
-		e.getBody().accept(this, null);
+		try {
+			createFrameClass(f);
+		}
+		catch(FileNotFoundException ex) {
+			
+		}
+		blocks.endScope(f,env);
+		//e.getBody().accept(this, null);
 		return null;
 	}
 
@@ -198,6 +208,39 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 		return cg.blocks.block;
 	}
 	
+	private static void createFrameClass(Frame f) throws FileNotFoundException {
+		String frameId = "frame_" + f.id;
+		String frameContent = String.format("""
+                .class public mypackage/%s
+                .super java/lang/Object
+                .field public SL Ljava/lang/Object;
+                """, frameId);
+		String s2 = """
+		.method public <init>()V
+     aload_0
+     invokenonvirtual java/lang/Object/<init>()V
+     return
+	 .end method
+				""";
+		StringBuilder sb = new StringBuilder(frameContent);
+		for(int i = 0; i < f.types.size(); i++) {
+			Type t = f.types.get(i);
+			String jvmType;
+			//accepting only ints and booleans
+			if(t instanceof IntType) {
+				jvmType = "I";
+			}
+			else {
+				jvmType = "Z";
+			}
+			sb.append(String.format(".field public loc_%d %s%n", i, jvmType));
+		}
+		sb.append(s2);
+		String filename = frameId + ".j";
+		PrintStream out = new PrintStream(new FileOutputStream(filename));
+	    out.print(sb.toString());
+	    out.close();
+	}
 	
 	private static StringBuilder genPreAndPost(BasicBlock block) {
 		String preamble = """

@@ -17,5 +17,10 @@ public class Frame {
 		this.nFields = nFields;
 		types = new ArrayList<Type>(nFields);
 	}
+	
+	public int add(Type t) {
+		types.add(t);
+		return types.size();
+	}
 
 }
