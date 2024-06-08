@@ -134,14 +134,13 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 	
 	@Override
 	public Value visit(ASTRef e, Env<Value> env) {
-		Value value = e.getValue().accept(this, env);
-		return new RefValue(value);
+        return e.getValue().accept(this, env);
 	}
 
 	@Override
 	public Value visit(ASTReref e, Env<Value> env) {
 		Value value = e.getValue().accept(this, env);
-		return new RefValue(value);
+		return value;
 	}
 
 	@Override
@@ -181,17 +180,14 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 
 	@Override
 	public Value visit(ASTDeref e, Env<Value> env) {
-		String refName = e.accept(this, env).toString();
-		Value value = env.find(refName);
+		Value value = env.find(e.getName());
 		
 		if(value != null) {
-			if(value instanceof RefValue) {
-				return ((RefValue) value).getValue();
-			}
+			return value;
 			//return error?
 		}
 		//return different error?
-		return null;
+		return null; //throw "Unbound reference"
 	}
 
 	@Override
@@ -232,16 +228,23 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 
 	@Override
 	public Value visit(ASTWhile e, Env<Value> env) {
-		List<Value> resultValues = new ArrayList<>(); // Store values from each iteration
+		Exp condition = e.arg1;
+		Exp body = e.arg2;
 
-		while(evalCondition(e.arg1, env)) {
-			Value result = e.arg2.accept(this, env);
-			//not sure how to return all values
-			if(result != null){
-				resultValues.add(result);
-			}
+		//obtain truth value of condition
+		BoolValue isTrue = (BoolValue) condition.accept(this, env);
+		Value result = null;
+
+		while(isTrue.getValue()){
+			result = body.accept(this,env);
+			isTrue = (BoolValue) condition.accept(this, env); //update condition with regard to environment
 		}
-		return new ValueList(resultValues);
+
+		if(result != null){
+			return result;
+		}
+
+		return new VoidValue();
 	}
 
 	@Override

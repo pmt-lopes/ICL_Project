@@ -5,78 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f0c5056-0892-493d-b29b-2c0d9552a991" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ast/ASTNew.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ast/ASTNull.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ast/ASTPrint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ast/ASTPrintln.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ast/ASTReref.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/values/VoidValue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTAdd.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTAdd.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTAnd.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTAnd.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTAsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTAsg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTBool.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTBool.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTDeref.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTDeref.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTDiv.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTDiv.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTEq.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTEq.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTGr.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTGr.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTGrE.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTGrE.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTId.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTId.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTIf.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTIf.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTInt.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTInt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTLet.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTLet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTMult.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTMult.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTNEq.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTNEq.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTNeg.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTNeg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTOr.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTOr.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTRef.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTRef.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTSeq.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTSeq.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTSub.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTSub.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTWhile.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTWhile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/Exp$Visitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/Exp$Visitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/Exp.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/Exp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/interpreter/Interpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/interpreter/Interpreter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/main/Console.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/main/Console.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/parser/ParseException.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/parser/ParseException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/parser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/parser/Parser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/parser/Parser.jj" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/parser/Parser.jj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/parser/ParserConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/parser/ParserConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/parser/ParserTokenManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/parser/ParserTokenManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/parser/SimpleCharStream.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/parser/SimpleCharStream.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/parser/Token.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/parser/Token.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/parser/TokenMgrError.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/parser/TokenMgrError.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/symbols/Env.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/symbols/Env.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/types/BoolType.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/types/BoolType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/types/IntType.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/types/IntType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/types/RefType.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/types/RefType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/types/Type.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/types/Type.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/types/TypingException.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/types/TypingException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/types/UnitType.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/types/UnitType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/values/BoolValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/values/BoolValue.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/values/IntValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/values/IntValue.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/values/RefValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/values/RefValue.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/values/Value.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/values/Value.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/values/ValueList.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/values/ValueList.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ast/ASTDeref.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTDeref.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ast/ASTDeref.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTDeref.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ast/ASTIf.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTIf.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ast/ASTLet.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTLet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ast/ASTLet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTLet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ast/ASTRef.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTRef.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ast/ASTRef.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTRef.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ast/ASTWhile.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTWhile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ast/Exp$Visitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/Exp$Visitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ast/Exp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/Exp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interpreter/Interpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/interpreter/Interpreter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interpreter/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interpreter/Interpreter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/Parser.jj" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.jj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/ParserConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/ParserConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/ParserConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/ParserConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/ParserTokenManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/ParserTokenManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/ParserTokenManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/ParserTokenManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +106,7 @@
       <workItem from="1714150995381" duration="2313000" />
       <workItem from="1714155728751" duration="5044000" />
       <workItem from="1717527636667" duration="8932000" />
-      <workItem from="1717612175984" duration="33977000" />
+      <workItem from="1717612175984" duration="36709000" />
     </task>
     <servers />
   </component>
@@ -187,16 +123,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/interpreter/Interpreter.java</url>
-          <line>183</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

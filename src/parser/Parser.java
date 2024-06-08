@@ -203,6 +203,11 @@ public class Parser implements ParserConstants {
       id = jj_consume_token(ID);
               {if (true) return new ASTId(id.image, null);}
       break;
+    case DEREF:
+      jj_consume_token(DEREF);
+      id = jj_consume_token(ID);
+                      {if (true) return new ASTDeref(id.image);}
+      break;
     case MINUS:
       jj_consume_token(MINUS);
       jj_consume_token(NUM);
@@ -225,28 +230,28 @@ public class Parser implements ParserConstants {
       break;
     case IF:
       jj_consume_token(IF);
-      exp = expression();
+      exp = seq();
       jj_consume_token(THEN);
-      exp1 = expression();
+      exp1 = seq();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case ELSE:
         jj_consume_token(ELSE);
-        exp3 = expression();
+        exp3 = seq();
         break;
       default:
         jj_la1[6] = jj_gen;
         ;
       }
       jj_consume_token(END);
-                                                                                         {if (true) return new ASTIf(exp, exp1, exp3);}
+                                                                    {if (true) return new ASTIf(exp, exp1, exp3);}
       break;
     case WHILE:
       jj_consume_token(WHILE);
-      exp1 = expression();
+      exp1 = seq();
       jj_consume_token(DO);
-      exp2 = expression();
+      exp2 = seq();
       jj_consume_token(END);
-                                                             {if (true) return new ASTWhile(exp1, exp2);}
+                                               {if (true) return new ASTWhile(exp1, exp2);}
       break;
     case PRINTLN:
       jj_consume_token(PRINTLN);
@@ -278,6 +283,7 @@ public class Parser implements ParserConstants {
       case LET:
       case IF:
       case WHILE:
+      case DEREF:
       case NEW:
       case PRINT:
       case PRINTLN:
@@ -317,7 +323,7 @@ public class Parser implements ParserConstants {
       jj_la1_init_1();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x10000000,0x20000000,0x3de0c,0x3de0c,0x30,0x30,0x1000000,0x25c20ca,0x25c204a,};
+      jj_la1_0 = new int[] {0x10000000,0x20000000,0x3de0c,0x3de0c,0x30,0x30,0x1000000,0x825c20ca,0x825c204a,};
    }
    private static void jj_la1_init_1() {
       jj_la1_1 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x207,0x207,};

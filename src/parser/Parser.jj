@@ -172,6 +172,8 @@ Exp primaryExpression() : {
     |
     id=<ID> { return new ASTId(id.image, null); }
     |
+    <DEREF> id=<ID> { return new ASTDeref(id.image); }
+    |
     <MINUS> <NUM> { return new ASTInt(-Integer.parseInt(token.image)); }
     |
     <NEG> exp=primaryExpression() { return new ASTNeg(exp); }
@@ -179,9 +181,9 @@ Exp primaryExpression() : {
     <LET> id=<ID> <EQ> exp1=seq() <IN> exp2=seq() <END>
     { ASTLet let = new ASTLet(); let.addToken(id.image); let.addBinding(exp1); let.setBody(exp2); return let;}
     |
-    <IF> exp=expression() <THEN> exp1=expression() ( <ELSE> exp3=expression() )? <END> { return new ASTIf(exp, exp1, exp3); }
+    <IF> exp=seq() <THEN> exp1=seq() ( <ELSE> exp3=seq() )? <END> { return new ASTIf(exp, exp1, exp3); }
     |
-    <WHILE> exp1=expression() <DO> exp2=expression() <END> { return new ASTWhile(exp1, exp2); }
+    <WHILE> exp1=seq() <DO> exp2=seq() <END> { return new ASTWhile(exp1, exp2); }
     |
     <PRINTLN> exp=expression() { return new ASTPrintln(exp); }
     |
