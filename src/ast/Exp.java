@@ -1,5 +1,6 @@
 package ast;
 
+import types.Type;
 
 public interface Exp {
 	
@@ -28,5 +29,9 @@ public interface Exp {
 	}
 	
 	public <T,E> T accept(Visitor<T,E> v, E env);
+	
+	public Type getType();
+	
+	public void setType(Type t);
 
 }
