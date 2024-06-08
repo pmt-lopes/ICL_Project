@@ -11,9 +11,15 @@
  ; setup local variables:
  ;    1 - the PrintStream object held in java.lang.out
 getstatic java/lang/System/out Ljava/io/PrintStream;
-sipush 10
-sipush 32
-iadd
+sipush 9
+sipush 8
+if_icmpge L1
+sipush 0
+goto L2
+L1:
+sipush 1
+L2:
+nop
 invokestatic java/lang/String/valueOf(I)Ljava/lang/String;
 invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
 return

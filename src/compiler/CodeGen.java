@@ -4,142 +4,161 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 
+import Util.Pair;
 import ast.*;
 import target.*;
 
 public class CodeGen implements Exp.Visitor<Void, Void>{
 	
-	BasicBlock block = new BasicBlock();
+	BlockSeq blocks = new BlockSeq();
 
 	@Override
-	public Void visit(ASTInt i, Void ev) {
-		block.addInstruction(new SIPush(i.value) );
+	public Void visit(ASTInt i, Void v) {
+		blocks.addInstruction(new SIPush(i.value) );
 		return null;
 	}
 
 	@Override
-	public Void visit(ASTAdd e, Void env) {
-	    e.arg1.accept(this, env);
-	    e.arg2.accept(this, env);
-	    block.addInstruction(new IAdd());
+	public Void visit(ASTAdd e, Void v) {
+	    e.arg1.accept(this, null);
+	    e.arg2.accept(this, null);
+	    blocks.addInstruction(new IAdd());
 	    return null;
 	}
 
 	@Override
-	public Void visit(ASTSub e, Void env) {
-		e.arg1.accept(this, env);
-		e.arg2.accept(this, env);
-		block.addInstruction(new ISub());
+	public Void visit(ASTSub e, Void v) {
+		e.arg1.accept(this, null);
+		e.arg2.accept(this, null);
+		blocks.addInstruction(new ISub());
 		return null;
 	}
 
 	@Override
-	public Void visit(ASTMult e, Void env) {
-		e.arg1.accept(this, env);
-		e.arg2.accept(this, env);
-		block.addInstruction(new IMul());
+	public Void visit(ASTMult e, Void v) {
+		e.arg1.accept(this, null);
+		e.arg2.accept(this, null);
+		blocks.addInstruction(new IMul());
 		return null;
 	}
 
 	@Override
-	public Void visit(ASTDiv e, Void env) {
-		e.arg1.accept(this, env);
-		e.arg2.accept(this, env);
-		block.addInstruction(new IDiv());
+	public Void visit(ASTDiv e, Void v) {
+		e.arg1.accept(this, null);
+		e.arg2.accept(this, null);
+		blocks.addInstruction(new IDiv());
 		return null;
 	}
 
 	@Override
-	public Void visit(ASTBool e, Void env) {
-		block.addInstruction(new SIPush(e.value? 1 : 0) );
+	public Void visit(ASTBool e, Void v) {
+		blocks.addInstruction(new SIPush(e.value? 1 : 0) );
 		return null;
 	}
 
 	@Override
-	public Void visit(ASTAnd e, Void env) {
-		e.arg1.accept(this, env);
-		e.arg2.accept(this, env);
-		block.addInstruction(new IAnd());
+	public Void visit(ASTAnd e, Void v) {
+		e.arg1.accept(this, null);
+		e.arg2.accept(this, null);
+		blocks.addInstruction(new IAnd());
 		return null;
 	}
 
 	@Override
-	public Void visit(ASTOr e, Void env) {
-		e.arg1.accept(this, env);
-		e.arg2.accept(this, env);
-		block.addInstruction(new IOr());
+	public Void visit(ASTOr e, Void v) {
+		e.arg1.accept(this, null);
+		e.arg2.accept(this, null);
+		blocks.addInstruction(new IOr());
 		return null;
 	}
 
 	@Override
-	public Void visit(ASTEq e, Void env) {
-		e.arg1.accept(this, env);
-		e.arg2.accept(this, env);
-		block.addInstruction(new IfICmpNeq("L1"));
-		block.addInstruction(new SIPush(1));
-		block.addInstruction(new Jmp("L2"));
-		block.addInstruction(new Label("L1", "sipush 0"));
-		block.addInstruction(new Label("L2", "nop"));
+	public Void visit(ASTEq e, Void v) {
+		e.arg1.accept(this, null);
+		e.arg2.accept(this, null);
+		blocks.addInstruction(new IfICmpEq("L1"));
+		blocks.addInstruction(new SIPush(0));
+		blocks.addInstruction(new GoTo("L2"));
+		blocks.addInstruction(new Label("L1"));
+		blocks.addInstruction(new SIPush(1));
+		blocks.addInstruction(new Label("L2"));
+		blocks.addInstruction(new Nop());
 		return null;
 	}
 
 	@Override
-	public Void visit(ASTNEq e, Void env) {
-		e.arg1.accept(this, env);
-		e.arg2.accept(this, env);
-		block.addInstruction(new IfICmpNe("L1"));
-		block.addInstruction(new SIPush(1));
-		block.addInstruction(new Jmp("L2"));
-		block.addInstruction(new Label("L1", "sipush 0"));
-		block.addInstruction(new Label("L2", "nop"));
+	public Void visit(ASTNEq e, Void v) {
+		e.arg1.accept(this, null);
+		e.arg2.accept(this, null);
+		blocks.addInstruction(new IfICmpNe("L1"));
+		blocks.addInstruction(new SIPush(0));
+		blocks.addInstruction(new GoTo("L2"));
+		blocks.addInstruction(new Label("L1"));
+		blocks.addInstruction(new SIPush(1));
+		blocks.addInstruction(new Label("L2"));
+		blocks.addInstruction(new Nop());
 		return null;
 	}
 
 	@Override
-	public Void visit(ASTGr e, Void env) {
-		e.arg1.accept(this, env);
-		e.arg2.accept(this, env);
-		block.addInstruction(new IfICmpLe("L1"));
-		block.addInstruction(new SIPush(1));
-		block.addInstruction(new Jmp("L2"));
-		block.addInstruction(new Label("L1", "sipush 0"));
-		block.addInstruction(new Label("L2", "nop"));
+	public Void visit(ASTGr e, Void v) {
+		e.arg1.accept(this, null);
+		e.arg2.accept(this, null);
+		blocks.addInstruction(new IfICmpGt("L1"));
+		blocks.addInstruction(new SIPush(0));
+		blocks.addInstruction(new GoTo("L2"));
+		blocks.addInstruction(new Label("L1"));
+		blocks.addInstruction(new SIPush(1));
+		blocks.addInstruction(new Label("L2"));
+		blocks.addInstruction(new Nop());
 		return null;
 	}
 
 	@Override
-	public Void visit(ASTGrE e, Void env) {
-		e.arg1.accept(this, env);
-		e.arg2.accept(this, env);
-		block.addInstruction(new IfICmpGe("L1"));
-		block.addInstruction(new SIPush(1));
-		block.addInstruction(new Jmp("L2"));
-		block.addInstruction(new Label("L1", "sipush 0"));
-		block.addInstruction(new Label("L2", "nop"));
+	public Void visit(ASTGrE e, Void v) {
+		e.arg1.accept(this, null);
+		e.arg2.accept(this, null);
+		blocks.addInstruction(new IfICmpGe("L1"));
+		blocks.addInstruction(new SIPush(0));
+		blocks.addInstruction(new GoTo("L2"));
+		blocks.addInstruction(new Label("L1"));
+		blocks.addInstruction(new SIPush(1));
+		blocks.addInstruction(new Label("L2"));
+		blocks.addInstruction(new Nop());
 		return null;
 	}
 
 	@Override
-	public Void visit(ASTNeg e, Void env) {
-		block.addInstruction(new SIPush(0));
-		e.value.accept(this, env);
-		block.addInstruction(new IfICmpNeq("L1"));
-		block.addInstruction(new SIPush(1));
-		block.addInstruction(new Jmp("L2"));
-		block.addInstruction(new Label("L1", "sipush 0"));
-		block.addInstruction(new Label("L2", "nop"));
+	public Void visit(ASTNeg e, Void v) {
+		e.value.accept(this, null);
+		blocks.addInstruction(new SIPush(0));
+		blocks.addInstruction(new IfICmpEq("L1"));
+		blocks.addInstruction(new SIPush(0));
+		blocks.addInstruction(new GoTo("L2"));
+		blocks.addInstruction(new Label("L1"));
+		blocks.addInstruction(new SIPush(1));
+		blocks.addInstruction(new Label("L2"));
+		blocks.addInstruction(new Nop());
 		return null;
 	}
 
 	@Override
-	public Void visit(ASTId e, Void env) {
-		// TODO Auto-generated method stub
+	public Void visit(ASTId e, Void v) {
+		blocks.fetch(e.arg1, e.getType());
 		return null;
 	}
 
 	@Override
-	public Void visit(ASTLet e, Void env) {
-		// TODO Auto-generated method stub
+	public Void visit(ASTLet e, Void v) {
+		int count = e.getBindings().size();
+		Pair<Frame,CompEnv> p = blocks.beginScope(count);
+		Frame f = p.getFirst();
+		CompEnv newEnv = p.getSecond();
+		for (Exp b : e.getBindings()) {
+			//emit code to store bindings in new frame
+		}
+		blocks.endScope(f,newEnv);
+		e.getBody().accept(this, null);
 		return null;
 	}
 
@@ -176,7 +195,7 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 	public static BasicBlock codeGen(Exp e, Void ev) {
 		CodeGen cg = new CodeGen();
 		e.accept(cg, ev);
-		return cg.block;
+		return cg.blocks.block;
 	}
 	
 	

@@ -6,6 +6,7 @@ import java.util.List;
 import Util.Pair;
 import target.BasicBlock;
 import target.Instruction;
+import types.Type;
 
 public class BlockSeq {
 	
@@ -27,6 +28,15 @@ public class BlockSeq {
 		f.prev = currFrame;
 		currFrame = f;
 		env = env.beginScope();
+		
+		//create jasmin file for frame_id class
+		
+		//add instructions for class declaration
+		
+		//add instructions for variable fields
+		
+		//add instructions for end of declaration
+		
 		return new Pair<>(currFrame, env);
 	}
 	
@@ -43,6 +53,11 @@ public class BlockSeq {
 	public void addInstruction(Instruction i) {
 		block.addInstruction(i);
 	}
-	//public void fetch(String id, Type t) {…}
+	
+	public void fetch(String id, Type t) {
+		//add instructions to call frame
+		
+		//add instructions to get element from frame
+	}
 
 }
