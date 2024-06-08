@@ -134,7 +134,12 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 	
 	@Override
 	public Value visit(ASTRef e, Env<Value> env) {
-        return e.getValue().accept(this, env);
+		//String id = ((ASTId) e.getName().accept(this, env)).toString();
+		if(e.getValue() != null){
+			//env.bind(e.getName(), e.getValue().accept(this, env));
+			return e.getValue().accept(this, env);
+		}
+		return new VoidValue();
 	}
 
 	@Override
@@ -222,8 +227,10 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 	public Value visit(ASTSeq e, Env<Value> env) {
 		Value v1 = e.arg1.accept(this, env);
 		Value v2 = e.arg2.accept(this, env);
-		//not sure how to do this
-		return null;
+		List<Value> values = new ArrayList<>(2);
+		values.add(v1);
+		values.add(v2);
+		return new ValueList(values);
 	}
 
 	@Override
@@ -233,13 +240,19 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 
 		//obtain truth value of condition
 		BoolValue isTrue = (BoolValue) condition.accept(this, env);
+		//System.out.println("IS COND TRUE? " + isTrue.getValue());
 		Value result = null;
+		System.out.println("DEBUG:IS WHILE CONDITION TRUE? " + isTrue.getValue());
 
 		while(isTrue.getValue()){
 			result = body.accept(this,env);
+			if(body instanceof ASTRef) { // new value should be bound to var!
+				ASTRef refBody = (ASTRef) body;
+				env.bind(refBody.getName(), refBody.getValue().accept(this, env)); //bind new value to var in case of ASTRef
+			}
 			isTrue = (BoolValue) condition.accept(this, env); //update condition with regard to environment
+			System.out.println("DEBUG:IS WHILE CONDITION TRUE? " + isTrue.getValue());
 		}
-
 		if(result != null){
 			return result;
 		}

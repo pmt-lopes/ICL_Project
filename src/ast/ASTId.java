@@ -14,5 +14,7 @@ public class ASTId implements Exp{
 		return v.visit(this, env);
 	}
 
-
+	public String toString(){
+		return arg1;
+	}
 }

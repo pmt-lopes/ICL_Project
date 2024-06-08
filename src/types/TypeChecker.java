@@ -216,4 +216,29 @@ public class TypeChecker implements ast.Exp.Visitor<Type,Env<Type>>{
 		}
 	}
 
+	@Override
+	public Type visit(ASTReref e, Env<Type> env) {
+		return null;
+	}
+
+	@Override
+	public Type visit(ASTPrintln e, Env<Type> env) {
+		return null;
+	}
+
+	@Override
+	public Type visit(ASTPrint e, Env<Type> env) {
+		return null;
+	}
+
+	@Override
+	public Type visit(ASTNew e, Env<Type> env) {
+		return null;
+	}
+
+	@Override
+	public Type visit(ASTNull e, Env<Type> env) {
+		return null;
+	}
+
 }

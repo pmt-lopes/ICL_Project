@@ -17,7 +17,7 @@ public class Parser implements ParserConstants {
   final public Exp seq() throws ParseException {
   Token op;
   Exp t1, t2;
-    t1 = ref();
+    t1 = expression();
     label_1:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -29,31 +29,25 @@ public class Parser implements ParserConstants {
         break label_1;
       }
       op = jj_consume_token(SEMICOLON);
-      t2 = ref();
+      t2 = expression();
                  t1 = new ASTSeq(t1,t2);
     }
        {if (true) return t1;}
     throw new Error("Missing return statement in function");
   }
 
-  final public Exp ref() throws ParseException {
- Token n;
-  Exp q1, q2;
-    q1 = expression();
-    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case REF:
-      jj_consume_token(REF);
-      q2 = expression();
-                    q1 = new ASTRef(q1,q2);
-      break;
-    default:
-      jj_la1[1] = jj_gen;
-      ;
-    }
-       {if (true) return q1;}
-    throw new Error("Missing return statement in function");
-  }
-
+//Exp ref() :
+//{Token n;
+//  Exp q1, q2;}
+//{
+//     q1 = expression() ( <REF> q2=expression()
+//    			 {
+//                    q1 = new ASTRef(q1,q2);
+//                 }
+//                  )?
+//     { return q1; }
+//
+//}
   final public Exp expression() throws ParseException {
   Exp left, right;
   Token op;
@@ -74,7 +68,7 @@ public class Parser implements ParserConstants {
         ;
         break;
       default:
-        jj_la1[2] = jj_gen;
+        jj_la1[1] = jj_gen;
         break label_2;
       }
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -109,7 +103,7 @@ public class Parser implements ParserConstants {
         op = jj_consume_token(OR);
         break;
       default:
-        jj_la1[3] = jj_gen;
+        jj_la1[2] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -143,7 +137,7 @@ public class Parser implements ParserConstants {
         ;
         break;
       default:
-        jj_la1[4] = jj_gen;
+        jj_la1[3] = jj_gen;
         break label_3;
       }
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -154,7 +148,7 @@ public class Parser implements ParserConstants {
         op = jj_consume_token(DIV);
         break;
       default:
-        jj_la1[5] = jj_gen;
+        jj_la1[4] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -201,7 +195,16 @@ public class Parser implements ParserConstants {
       break;
     case ID:
       id = jj_consume_token(ID);
-              {if (true) return new ASTId(id.image, null);}
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case REF:
+        jj_consume_token(REF);
+        exp3 = expression();
+        break;
+      default:
+        jj_la1[5] = jj_gen;
+        ;
+      }
+                                           {if (true) return new ASTRef(id.image,exp3);}
       break;
     case DEREF:
       jj_consume_token(DEREF);
@@ -323,7 +326,7 @@ public class Parser implements ParserConstants {
       jj_la1_init_1();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x10000000,0x20000000,0x3de0c,0x3de0c,0x30,0x30,0x1000000,0x825c20ca,0x825c204a,};
+      jj_la1_0 = new int[] {0x10000000,0x3de0c,0x3de0c,0x30,0x30,0x20000000,0x1000000,0x825c20ca,0x825c204a,};
    }
    private static void jj_la1_init_1() {
       jj_la1_1 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x207,0x207,};

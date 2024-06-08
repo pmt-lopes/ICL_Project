@@ -2,15 +2,15 @@ package ast;
 
 public class ASTRef implements Exp{
 	
+	private String refName;
 	private Exp value;
-	private Exp refName;
-	
-	public ASTRef(Exp e1, Exp e2) {
+
+	public ASTRef(String e1, Exp e2) {
 		this.refName = e1;
 		this.value = e2;
 	}
 	
-	public Exp getName() {
+	public String getName() {
 		return refName;
 	}
 	

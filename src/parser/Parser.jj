@@ -76,24 +76,24 @@ Exp seq():
 { Token op;
   Exp t1, t2; }
 {
-     t1=ref() (  op=<SEMICOLON>  t2=ref()
+     t1=expression() (  op=<SEMICOLON>  t2=expression()
                { t1 = new ASTSeq(t1,t2); }
                ) *
      { return t1; }
 }
 
-Exp ref() :
-{Token n;
-  Exp q1, q2;}
-{
-     q1 = expression() ( <REF> q2=expression()
-    			 {
-                    q1 = new ASTRef(q1,q2);
-                 }
-                  )?
-     { return q1; }
-
-}
+//Exp ref() :
+//{Token n;
+//  Exp q1, q2;}
+//{
+//     q1 = expression() ( <REF> q2=expression()
+//    			 {
+//                    q1 = new ASTRef(q1,q2);
+//                 }
+//                  )?
+//     { return q1; }
+//
+//}
 
 Exp expression() : {
   Exp left, right;
@@ -170,7 +170,7 @@ Exp primaryExpression() : {
     |
     <FALSE> { return new ASTBool(false); }
     |
-    id=<ID> { return new ASTId(id.image, null); }
+    id=<ID> ( <REF> exp3=expression() )? { return new ASTRef(id.image,exp3); }
     |
     <DEREF> id=<ID> { return new ASTDeref(id.image); }
     |
