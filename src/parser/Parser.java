@@ -258,18 +258,18 @@ public class Parser implements ParserConstants {
       break;
     case PRINTLN:
       jj_consume_token(PRINTLN);
-      exp = expression();
-                                 {if (true) return new ASTPrintln(exp);}
+      id = jj_consume_token(ID);
+                        {if (true) return new ASTPrintln(id.image);}
       break;
     case PRINT:
       jj_consume_token(PRINT);
-      exp = expression();
-                               {if (true) return new ASTPrint(exp);}
+      id = jj_consume_token(ID);
+                      {if (true) return new ASTPrint(id.image);}
       break;
     case NEW:
       jj_consume_token(NEW);
-      exp = expression();
-                             {if (true) return new ASTNew(exp);}
+      id = jj_consume_token(ID);
+                    {if (true) return new ASTNew(id.image);}
       break;
     case LPAR:
       jj_consume_token(LPAR);

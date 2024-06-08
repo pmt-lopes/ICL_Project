@@ -2,9 +2,9 @@ package ast;
 
 public class ASTPrint implements Exp{
 
-	public Exp value;
+	public String value;
 
-	public ASTPrint(Exp e) {
+	public ASTPrint(String e) {
 		value = e;
 	}
 

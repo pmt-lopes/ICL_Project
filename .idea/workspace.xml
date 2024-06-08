@@ -6,28 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="9f0c5056-0892-493d-b29b-2c0d9552a991" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTDeref.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTDeref.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTId.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTId.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTLet.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTLet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTRef.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTRef.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/Exp$Visitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/Exp$Visitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/Memory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTNew.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTNew.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTPrint.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTPrint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTPrintln.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/ast/ASTPrintln.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/interpreter/Interpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/interpreter/Interpreter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/parser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/parser/Parser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/parser/Parser.jj" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/parser/Parser.jj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/parser/ParserConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/parser/ParserConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/parser/ParserTokenManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/parser/ParserTokenManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/ICL_Project/types/TypeChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/ICL_Project/types/TypeChecker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ast/ASTId.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTId.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ast/ASTId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTId.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ast/ASTRef.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTRef.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ast/ASTRef.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTRef.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTNew.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTNew.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTNew.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTNew.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTPrint.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTPrint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTPrint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTPrint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTPrintln.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTPrintln.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTPrintln.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTPrintln.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interpreter/Interpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/interpreter/Interpreter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interpreter/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interpreter/Interpreter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/Parser.jj" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.jj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/TypeChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/TypeChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/values/VoidValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/values/VoidValue.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +117,7 @@
       <workItem from="1714150995381" duration="2313000" />
       <workItem from="1714155728751" duration="5044000" />
       <workItem from="1717527636667" duration="8932000" />
-      <workItem from="1717612175984" duration="44032000" />
+      <workItem from="1717612175984" duration="45491000" />
     </task>
     <servers />
   </component>
@@ -149,8 +145,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/interpreter/Interpreter.java</url>
-          <line>237</line>
+          <line>236</line>
           <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/interpreter/Interpreter.java</url>
+          <line>198</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

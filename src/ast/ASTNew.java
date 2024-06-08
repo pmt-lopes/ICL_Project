@@ -2,24 +2,14 @@ package ast;
 
 public class ASTNew implements Exp{
 
-	private Exp value;
-	private Exp refName;
+	private String refName;
 
-	public ASTNew(Exp e1) {
+	public ASTNew(String e1) {
 		this.refName = e1;
-		this.value = null;
 	}
 	
-	public Exp getName() {
+	public String getName() {
 		return refName;
-	}
-	
-	public Exp getValue() {
-		return value;
-	}
-	
-	public void setValue(Exp e) {
-		this.value = e;
 	}
 
 	@Override

@@ -185,11 +185,11 @@ Exp primaryExpression() : {
     |
     <WHILE> exp1=seq() <DO> exp2=seq() <END> { return new ASTWhile(exp1, exp2); }
     |
-    <PRINTLN> exp=expression() { return new ASTPrintln(exp); }
+    <PRINTLN> id=<ID> { return new ASTPrintln(id.image); }
     |
-    <PRINT> exp=expression() { return new ASTPrint(exp); }
+    <PRINT> id=<ID> { return new ASTPrint(id.image); }
     |
-    <NEW> exp=expression() { return new ASTNew(exp); }
+    <NEW> id=<ID> { return new ASTNew(id.image); }
     |
     <LPAR> (<RPAR> | exp3=expression() <RPAR>) { if(exp3 != null) return exp3; else return new ASTNull(); }
 

@@ -150,10 +150,9 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 
 	@Override
 	public Value visit(ASTNew e, Env<Value> env) {
-		env.beginScope();
-		String id = e.getName().toString(); // TODO: should verify if is string, maybe do .accept() on StringValue?
-		env.bind(id,null);
-		return new RefValue(env.find(id));
+		//String id = e.getName(); // TODO: should verify if is string, maybe do .accept() on StringValue?
+		//env.bind(id,new VoidValue());
+		return new RefValue(new VoidValue());
 	}
 
 	@Override
@@ -197,7 +196,7 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 
 	@Override
 	public Value visit(ASTPrintln e, Env<Value> env) {
-		Value text = e.accept(this, env);
+		String text = e.value;
 
 		if(text != null) {
 			//if(text instanceof String) {
@@ -211,7 +210,7 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 
 	@Override
 	public Value visit(ASTPrint e, Env<Value> env) {
-		Value text = e.accept(this, env);
+		String text = e.value;
 
 		if(text != null) {//TODO: should i verify the type?
 			//if(text instanceof String) {

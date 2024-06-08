@@ -7,7 +7,7 @@ public class VoidValue implements Value {
     public VoidValue() {}
 
 	public String toString() {
-        return "()";
+        return " : ()";
 	}
 
 }
