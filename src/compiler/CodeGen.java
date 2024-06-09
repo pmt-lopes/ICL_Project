@@ -155,11 +155,52 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 		Pair<Frame,CompEnv> p = blocks.beginScope(count);
 		Frame f = p.getFirst();
 		CompEnv env = p.getSecond();
+		/*
+		 *  new frame_0
+			dup
+			invokespecial frame_0/<init>()V
+			dup
+			aload 0
+			putfield frame_0/sl Lframe_prev
+			astore 0
+		 */
+		String frameId = "frame_" + f.id;
+		blocks.addInstruction(new New(frameId));
+		blocks.addInstruction(new Dup());
+		blocks.addInstruction(new InvokeSpecial(frameId + "/<init>()V"));
+		blocks.addInstruction(new Dup());
+		blocks.addInstruction(new ALoad(0));
+		String previousLink;
+		if(f.id == 0) {
+			previousLink = "Ljava/lang/Object;";
+		}
+		else {
+			previousLink = "Lframe_" + (f.id -1) + ";";
+		}
+		blocks.addInstruction(new PutField(frameId + "/SL", previousLink));
+		blocks.addInstruction(new AStore(0));
 		for (Exp b : e.getBindings()) {
 			ASTId i = (ASTId) b;
 			Type t = i.getType();
 			int index = f.add(t) -1;
 			env.bind(i.arg1, index);
+			/*
+			 * aload 0
+				[[ E1 ]]
+				putfield frame_id/loc_0 type1
+			 */
+			blocks.addInstruction(new ALoad(0));
+			i.arg2.accept(this, null);
+			String jvmType;
+			//accepting only ints and booleans
+			if(t instanceof IntType) {
+				jvmType = "I";
+			}
+			else {
+				jvmType = "Z";
+			}
+			String locIndex = "/loc_" + index;
+			blocks.addInstruction(new PutField(frameId + locIndex, jvmType));
 		}
 		try {
 			createFrameClass(f);
@@ -167,8 +208,18 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 		catch(FileNotFoundException ex) {
 			
 		}
+		e.getBody().accept(this, null);
+		/*
+		 * aload 0
+			checkcast frame_id
+			getfield frame_id/SL Lframe_prev;
+			astore 0
+		 */
+		blocks.addInstruction(new ALoad(0));
+		blocks.addInstruction(new CheckCast(frameId));
+		blocks.addInstruction(new GetField(frameId + "/SL", previousLink));
+		blocks.addInstruction(new AStore(0));
 		blocks.endScope(f,env);
-		//e.getBody().accept(this, null);
 		return null;
 	}
 
@@ -208,10 +259,11 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 		return cg.blocks.block;
 	}
 	
+	// TODO fix SL type
 	private static void createFrameClass(Frame f) throws FileNotFoundException {
 		String frameId = "frame_" + f.id;
 		String frameContent = String.format("""
-                .class public mypackage/%s
+                .class public %s
                 .super java/lang/Object
                 .field public SL Ljava/lang/Object;
                 """, frameId);
@@ -242,9 +294,11 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 	    out.close();
 	}
 	
+	private static void createRefClass() {}
+	
 	private static StringBuilder genPreAndPost(BasicBlock block) {
 		String preamble = """
-					  .class public mypackage/Demo
+					  .class public Demo
 					  .super java/lang/Object 
 					  .method public <init>()V
 					     aload_0

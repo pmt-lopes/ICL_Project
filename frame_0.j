@@ -1,4 +1,4 @@
-.class public mypackage/frame_0
+.class public frame_0
 .super java/lang/Object
 .field public SL Ljava/lang/Object;
 .field public loc_0 I

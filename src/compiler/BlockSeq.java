@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Util.Pair;
-import target.BasicBlock;
-import target.Instruction;
+import target.*;
+import types.IntType;
 import types.Type;
 
 public class BlockSeq {
@@ -51,6 +51,29 @@ public class BlockSeq {
 		Pair<Integer, Integer> p = env.find(id);
 		int depth = p.getFirst();
 		int width = p.getSecond();
+		/*
+		 * aload 0
+			getfield frame_1/sl Lframe_0;
+			getfield frame_0/loc_0 I
+		 */
+		this.addInstruction(new ALoad(0));
+		if(depth > 0) {
+			for(int i = 0; i < depth; i++) {
+				String frameSl = "frame_" + (currFrame.id - i) + "/SL";
+				String previousLink = "Lframe_" + (currFrame.id - i - 1) + ";";
+				this.addInstruction(new GetField(frameSl, previousLink));
+			}
+		}
+		String frameLoc = "frame_" + currFrame.id + "/loc_" + width;
+		String jvmType;
+		//accepting only ints and booleans
+		if(t instanceof IntType) {
+			jvmType = "I";
+		}
+		else {
+			jvmType = "Z";
+		}
+		this.addInstruction(new GetField(frameLoc, jvmType));
 	}
 
 }
