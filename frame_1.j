@@ -1,8 +1,7 @@
-.class public mypackage/frame_0
+.class public mypackage/frame_1
 .super java/lang/Object
-.field public SL Ljava/lang/Object;
+.field public SL Lmypackage/frame_0;
 .field public loc_0 I
-.field public loc_1 I
 .method public <init>()V
    aload_0
    invokenonvirtual java/lang/Object/<init>()V

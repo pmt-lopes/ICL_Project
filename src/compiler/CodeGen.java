@@ -164,7 +164,7 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 			putfield frame_0/sl Lframe_prev
 			astore 0
 		 */
-		String frameId = "frame_" + f.id;
+		String frameId = "mypackage/frame_" + f.id;
 		blocks.addInstruction(new New(frameId));
 		blocks.addInstruction(new Dup());
 		blocks.addInstruction(new InvokeSpecial(frameId + "/<init>()V"));
@@ -175,7 +175,7 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 			previousLink = "Ljava/lang/Object;";
 		}
 		else {
-			previousLink = "Lframe_" + (f.id -1) + ";";
+			previousLink = "Lmypackage/frame_" + (f.id -1) + ";";
 		}
 		blocks.addInstruction(new PutField(frameId + "/SL", previousLink));
 		blocks.addInstruction(new AStore(0));
@@ -259,14 +259,22 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 		return cg.blocks.block;
 	}
 	
-	// TODO fix SL type
 	private static void createFrameClass(Frame f) throws FileNotFoundException {
 		String frameId = "frame_" + f.id;
+		String previousType;
+		
+		if(f.id == 0) {
+			previousType = "Ljava/lang/Object";
+		} else {
+			previousType = "Lmypackage/frame_" + (f.id - 1);
+		}
+		
 		String frameContent = String.format("""
-                .class public %s
+                .class public mypackage/%s
                 .super java/lang/Object
-                .field public SL Ljava/lang/Object;
-                """, frameId);
+                .field public SL %s;
+                """, frameId, previousType);
+		
 		String s2 = """
 		.method public <init>()V
      aload_0
@@ -274,7 +282,9 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
      return
 	 .end method
 				""";
+		
 		StringBuilder sb = new StringBuilder(frameContent);
+		
 		for(int i = 0; i < f.types.size(); i++) {
 			Type t = f.types.get(i);
 			String jvmType;
@@ -287,6 +297,7 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 			}
 			sb.append(String.format(".field public loc_%d %s%n", i, jvmType));
 		}
+		
 		sb.append(s2);
 		String filename = frameId + ".j";
 		PrintStream out = new PrintStream(new FileOutputStream(filename));
@@ -298,7 +309,7 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 	
 	private static StringBuilder genPreAndPost(BasicBlock block) {
 		String preamble = """
-					  .class public Demo
+					  .class public mypackage/Demo
 					  .super java/lang/Object 
 					  .method public <init>()V
 					     aload_0

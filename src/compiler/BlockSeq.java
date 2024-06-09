@@ -28,7 +28,7 @@ public class BlockSeq {
 		f.prev = currFrame;
 		currFrame = f;
 		env = env.beginScope();
-		
+		frames.add(f);
 		return new Pair<>(currFrame, env);
 	}
 	
@@ -41,6 +41,7 @@ public class BlockSeq {
 	public void endScope(Frame f, CompEnv env) {
 		this.currFrame = currFrame.prev;
 		this.env = env.endScope();
+		frames.remove(f.id);
 	}
 	
 	public void addInstruction(Instruction i) {
@@ -59,12 +60,12 @@ public class BlockSeq {
 		this.addInstruction(new ALoad(0));
 		if(depth > 0) {
 			for(int i = 0; i < depth; i++) {
-				String frameSl = "frame_" + (currFrame.id - i) + "/SL";
-				String previousLink = "Lframe_" + (currFrame.id - i - 1) + ";";
+				String frameSl = "mypackage/frame_" + (currFrame.id - i) + "/SL";
+				String previousLink = "Lmypackage/frame_" + (currFrame.id - i - 1) + ";";
 				this.addInstruction(new GetField(frameSl, previousLink));
 			}
 		}
-		String frameLoc = "frame_" + currFrame.id + "/loc_" + width;
+		String frameLoc = "mypackage/frame_" + (currFrame.id - depth) + "/loc_" + width;
 		String jvmType;
 		//accepting only ints and booleans
 		if(t instanceof IntType) {

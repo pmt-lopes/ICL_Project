@@ -18,35 +18,36 @@ public class LetTest {
     @Test
     public void testWriteToFile() throws IOException {
         
-        //Let x = 1, y = 2, z = 3 in x+y+z
-        ASTId id1 = new ASTId("x", new ASTInt(1));
+        //Let 
+        ASTId id1 = new ASTId("x", new ASTInt(2));
         id1.setType(IntType.getInstance());
-        ASTId id2 = new ASTId("y", new ASTInt(2));
+        ASTId id2 = new ASTId("y", new ASTInt(3));
         id2.setType(IntType.getInstance());
-        ASTId id3 = new ASTId("z", new ASTInt(3));
-        id3.setType(IntType.getInstance());
 
         // Create a list of ASTId bindings
         List<Exp> bindings = new ArrayList<>();
         bindings.add(id1);
         bindings.add(id2);
-        bindings.add(id3);
 
         // Create an ASTLet expression
         ASTLet letExpression = new ASTLet();
         letExpression.setBindings(bindings);
         
-        // Set body
-        ASTId body1 = new ASTId("x", null);
-        body1.setType(IntType.getInstance());
-        ASTId body2 = new ASTId("y", null);
-        body2.setType(IntType.getInstance());
-        ASTId body3 = new ASTId("z", null);
-        body3.setType(IntType.getInstance());
-        ASTAdd body4 = new ASTAdd(body2, body3);
-        ASTAdd body = new ASTAdd(body1, body4);
+        ASTLet second = new ASTLet();
         
-        letExpression.setBody(body);
+        ASTId id3 = new ASTId("k", new ASTAdd(id1, id2));
+        id3.setType(IntType.getInstance());
+        
+        List<Exp> bindings2 = new ArrayList<>();
+        bindings2.add(id3);
+        
+        second.setBindings(bindings2);
+        
+        ASTAdd secondBody = new ASTAdd(new ASTAdd(id1, id2), id3);
+        
+        second.setBody(secondBody);
+        
+        letExpression.setBody(second);
 
         // Define the output file name
         String filename = "Demo.j";
@@ -63,7 +64,7 @@ public class LetTest {
         }
 
         // Verify class file is created
-        File classFile = new File("Demo.class");
+        File classFile = new File("mypackage/Demo.class");
         assertTrue(classFile.exists());
 
     }
