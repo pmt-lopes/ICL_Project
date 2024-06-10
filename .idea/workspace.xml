@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="9f0c5056-0892-493d-b29b-2c0d9552a991" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/Exp$Visitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/Exp$Visitor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interpreter/Interpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/interpreter/Interpreter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Console.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Console.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/IntType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/IntType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/RefType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/RefType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/types/TypeChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/TypeChecker.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,24 +44,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Console.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/lowdon/Documents/2osem2324/icl/example/Interpreter-Compiler&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Console.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/lowdon/Documents/2osem2324/icl/example/Interpreter-Compiler",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/parser" />
@@ -102,7 +108,7 @@
       <workItem from="1714155728751" duration="5044000" />
       <workItem from="1717527636667" duration="8932000" />
       <workItem from="1717612175984" duration="50979000" />
-      <workItem from="1718039991828" duration="6398000" />
+      <workItem from="1718039991828" duration="8176000" />
     </task>
     <servers />
   </component>
@@ -132,6 +138,16 @@
           <url>file://$PROJECT_DIR$/src/interpreter/Interpreter.java</url>
           <line>192</line>
           <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/types/TypeChecker.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/types/TypeChecker.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

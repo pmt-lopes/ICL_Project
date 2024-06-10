@@ -11,7 +11,7 @@ public class IntType implements Type {
 	}
 	
 	public String toString() {
-		return null;
+		return "IntType";
 	}
 	
 //	@Override

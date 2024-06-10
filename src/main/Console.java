@@ -7,6 +7,7 @@ import parser.ParseException;
 import parser.Parser;
 import parser.TokenMgrError;
 import interpreter.*;
+import types.TypeChecker;
 
 public class Console {
 
@@ -17,7 +18,9 @@ public class Console {
 		while (true) {
 			try {
 				Exp e = parser.Start();
-				System.out.println(Interpreter.interpret(e));
+				System.out.println(Interpreter.interpret(e)
+				+ "\n" + TypeChecker.typecheck(e)
+				);
 			} catch (TokenMgrError e) {
 				System.out.println("Lexical Error!");
 				e.printStackTrace();

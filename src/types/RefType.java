@@ -14,6 +14,6 @@ public class RefType implements Type {
 	}
 
     public String toString() {
-	return "ref_"+refOf.toString();
+	return "ref_";
     }
 }

@@ -82,18 +82,6 @@ Exp seq():
      { return t1; }
 }
 
-//Exp ref() :
-//{Token n;
-//  Exp q1, q2;}
-//{
-//     q1 = expression() ( <REF> q2=expression()
-//    			 {
-//                    q1 = new ASTRef(q1,q2);
-//                 }
-//                  )?
-//     { return q1; }
-//
-//}
 
 Exp expression() : {
   Exp left, right;
@@ -139,22 +127,6 @@ Exp term() : {
   )*
   { return primary; }
 }
-
-//Exp simpleExpression() : {
-//  Exp primary, exp; Token op;
-//}
-//{
-//  primary=primaryExpression()
-//  (
-//    <REF> exp=expression() { return new ASTRef(primary, exp); }
-//    |
-//    <REREF> exp=expression() { return new ASTReref(primary, exp); }
-//    |
-//    <DEREF> exp = expression() { return new ASTDeref(exp); }
-//  )*
-//  { return primary; }
-//}
-
 
 
 Exp primaryExpression() : {

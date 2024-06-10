@@ -1,6 +1,7 @@
 package types;
 
 import ast.*;
+import interpreter.Interpreter;
 import symbols.Env;
 import values.BoolValue;
 import values.RefValue;
@@ -20,12 +21,12 @@ public class TypeChecker implements ast.Exp.Visitor<Type,Env<Type>>{
 	public Type visit(ASTAdd e, Env<Type> env) {
 		Type t1 = e.arg1.accept(this, env);
 		Type t2 = e.arg2.accept(this, env);
-		if(t1 == IntType.getInstance() && t1 == t2) {
+		if(t1 instanceof IntType && t1 == t2) {
 			return t1;
-		} else {
-			//error?
-			return null;
 		}
+		//error?
+		return new VoidType();
+
 	}
 
 	@Override
@@ -284,6 +285,12 @@ public class TypeChecker implements ast.Exp.Visitor<Type,Env<Type>>{
 	@Override
 	public Type visit(ASTNull e, Env<Type> env) {
 		return new VoidType();
+	}
+
+	public static String typecheck(Exp e) {
+		TypeChecker i = new TypeChecker();
+		Env<Type> env = new Env<Type>();
+		return e.accept(i, env).toString();
 	}
 
 }
