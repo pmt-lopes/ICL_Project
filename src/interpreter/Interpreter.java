@@ -215,5 +215,17 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 		return null;
 	}
 
+	@Override
+	public Value visit(ASTPrint e, Env<Value> env) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Value visit(ASTPrintln e, Env<Value> env) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

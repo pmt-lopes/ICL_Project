@@ -347,6 +347,34 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 		return null;
 	}
 	
+	@Override
+	public Void visit(ASTPrint e, Void env) {
+		e.value.accept(this, null);
+		/*
+		 * getstatic java/lang/System/out Ljava/io/PrintStream;
+		 * invokestatic java/lang/String/valueOf(I)Ljava/lang/String;
+			invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+		 */
+		blocks.addInstruction(new GetStatic("java/lang/System/out", "Ljava/io/PrintStream;"));
+		blocks.addInstruction(new InvokeStatic("java/lang/String/valueOf(I)Ljava/lang/String;"));
+		blocks.addInstruction(new InvokeVirtual("java/io/PrintStream/print(Ljava/lang/String;)V"));
+		return null;
+	}
+
+	@Override
+	public Void visit(ASTPrintln e, Void env) {
+		e.value.accept(this, null);
+		/*
+		 * getstatic java/lang/System/out Ljava/io/PrintStream;
+		 * invokestatic java/lang/String/valueOf(I)Ljava/lang/String;
+			invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+		 */
+		blocks.addInstruction(new GetStatic("java/lang/System/out", "Ljava/io/PrintStream;"));
+		blocks.addInstruction(new InvokeStatic("java/lang/String/valueOf(I)Ljava/lang/String;"));
+		blocks.addInstruction(new InvokeVirtual("java/io/PrintStream/println(Ljava/lang/String;)V"));
+		return null;
+	}
+	
 	public static BasicBlock codeGen(Exp e, Void ev) {
 		CodeGen cg = new CodeGen();
 		e.accept(cg, ev);
