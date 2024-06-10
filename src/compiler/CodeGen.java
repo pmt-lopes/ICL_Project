@@ -349,13 +349,13 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 	
 	@Override
 	public Void visit(ASTPrint e, Void env) {
+		blocks.addInstruction(new GetStatic("java/lang/System/out", "Ljava/io/PrintStream;"));
 		e.value.accept(this, null);
 		/*
 		 * getstatic java/lang/System/out Ljava/io/PrintStream;
 		 * invokestatic java/lang/String/valueOf(I)Ljava/lang/String;
 			invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
 		 */
-		blocks.addInstruction(new GetStatic("java/lang/System/out", "Ljava/io/PrintStream;"));
 		blocks.addInstruction(new InvokeStatic("java/lang/String/valueOf(I)Ljava/lang/String;"));
 		blocks.addInstruction(new InvokeVirtual("java/io/PrintStream/print(Ljava/lang/String;)V"));
 		return null;
@@ -363,13 +363,13 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 
 	@Override
 	public Void visit(ASTPrintln e, Void env) {
+		blocks.addInstruction(new GetStatic("java/lang/System/out", "Ljava/io/PrintStream;"));
 		e.value.accept(this, null);
 		/*
 		 * getstatic java/lang/System/out Ljava/io/PrintStream;
 		 * invokestatic java/lang/String/valueOf(I)Ljava/lang/String;
 			invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
 		 */
-		blocks.addInstruction(new GetStatic("java/lang/System/out", "Ljava/io/PrintStream;"));
 		blocks.addInstruction(new InvokeStatic("java/lang/String/valueOf(I)Ljava/lang/String;"));
 		blocks.addInstruction(new InvokeVirtual("java/io/PrintStream/println(Ljava/lang/String;)V"));
 		return null;
@@ -513,13 +513,10 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 					   .limit locals 10
 					   .limit stack 256
 					   ; setup local variables:
-					   ;    1 - the PrintStream object held in java.lang.out
-					  getstatic java/lang/System/out Ljava/io/PrintStream;					          
+					   ;    1 - the PrintStream object held in java.lang.out				          
 				   """;
 		String footer = 
 				"""
-				invokestatic java/lang/String/valueOf(I)Ljava/lang/String;
-				invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
 				return
 				.end method
 				""";
