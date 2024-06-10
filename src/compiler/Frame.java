@@ -22,5 +22,9 @@ public class Frame {
 		types.add(t);
 		return types.size();
 	}
+	
+	public Type getType(int index) {
+		return types.get(index);
+	}
 
 }

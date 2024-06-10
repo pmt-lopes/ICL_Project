@@ -11,7 +11,7 @@ public class BoolType implements Type{
 	}
 	
 	public String toString() {
-		return null;
+		return "bool";
 	}
 
 }

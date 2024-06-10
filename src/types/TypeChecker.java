@@ -195,4 +195,10 @@ public class TypeChecker implements ast.Exp.Visitor<Type,Env<Type>>{
 		return null;
 	}
 
+	@Override
+	public Type visit(ASTIf e, Env<Type> env) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

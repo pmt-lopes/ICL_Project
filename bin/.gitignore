@@ -1,2 +1,6 @@
 /compiler/
 /test/
+/types/
+/ast/
+/interpreter/
+/target/

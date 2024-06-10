@@ -4,7 +4,7 @@ import types.Type;
 
 public class ASTIf implements Exp{
 	
-	private Exp arg1, arg2, arg3;
+	public Exp arg1, arg2, arg3;
 	private Type type;
 	
 	public ASTIf(Exp e1, Exp e2, Exp e3) {
@@ -21,8 +21,7 @@ public class ASTIf implements Exp{
 
 	@Override
 	public <T, E> T accept(Visitor<T, E> v, E env) {
-		// TODO Auto-generated method stub
-		return null;
+		return v.visit(this, env);
 	}
 
 	@Override

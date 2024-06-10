@@ -26,6 +26,7 @@ public interface Exp {
 		public T visit(ASTAsg e, E env);
 		public T visit(ASTSeq e, E env);
 		public T visit(ASTWhile e, E env);
+		public T visit(ASTIf e, E env);
 	}
 	
 	public <T,E> T accept(Visitor<T,E> v, E env);

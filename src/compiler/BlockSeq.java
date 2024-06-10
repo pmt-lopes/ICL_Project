@@ -6,6 +6,7 @@ import java.util.List;
 import Util.Pair;
 import target.*;
 import types.IntType;
+import types.RefType;
 import types.Type;
 
 public class BlockSeq {
@@ -66,15 +67,60 @@ public class BlockSeq {
 			}
 		}
 		String frameLoc = "mypackage/frame_" + (currFrame.id - depth) + "/loc_" + width;
+		String jvmType = getJVMType(t);
+		this.addInstruction(new GetField(frameLoc, jvmType));
+		
+		while(jvmType.startsWith("L")) {
+			String refLoc = jvmType.substring(1) + "/value"; //remove L
+			jvmType = jvmType.substring(5); //remove Lref
+			jvmType = "L" + jvmType;
+			/*
+			if(jvmType.startsWith("ref_")) {
+				jvmType = "L" + jvmType;
+			}*/
+			this.addInstruction(new GetField(refLoc, jvmType));
+		}
+		
+	}
+	
+	//function to write get ref part
+	public void fetchRef(String id, Type t) {
+		Pair<Integer, Integer> p = env.find(id);
+		int depth = p.getFirst();
+		int width = p.getSecond();
+		
+		this.addInstruction(new ALoad(0));
+		if(depth > 0) {
+			for(int i = 0; i < depth; i++) {
+				String frameSl = "mypackage/frame_" + (currFrame.id - i) + "/SL";
+				String previousLink = "Lmypackage/frame_" + (currFrame.id - i - 1) + ";";
+				this.addInstruction(new GetField(frameSl, previousLink));
+			}
+		}
+		
+		// getfield frame/loc Lref_
+		String frameLoc = "mypackage/frame_" + (currFrame.id - depth) + "/loc_" + width;
+		String jvmType = getJVMType(t);
+		this.addInstruction(new GetField(frameLoc, jvmType));
+		
+		
+	}
+	
+	private static String getJVMType(Type t) {
+		
 		String jvmType;
-		//accepting only ints and booleans
 		if(t instanceof IntType) {
 			jvmType = "I";
+		}
+		else if (t instanceof RefType){
+			RefType t2 = (RefType) t;
+			jvmType = "L" + t2.toString();
 		}
 		else {
 			jvmType = "Z";
 		}
-		this.addInstruction(new GetField(frameLoc, jvmType));
+		
+		return jvmType;
 	}
 
 }
