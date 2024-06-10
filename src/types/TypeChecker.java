@@ -193,7 +193,6 @@ public class TypeChecker implements ast.Exp.Visitor<Type,Env<Type>>{
 	@Override
 	public Type visit(ASTRef e, Env<Type> env) {
 		if(e.getValue() != null){
-			//env.bind(e.getName(), e.getValue().accept(this, env));
 			Type t = e.getValue().accept(this, env);
 			if(t instanceof RefType)
 				return e.getValue().accept(this, env);
@@ -203,7 +202,6 @@ public class TypeChecker implements ast.Exp.Visitor<Type,Env<Type>>{
 
 	@Override
 	public Type visit(ASTDeref e, Env<Type> env) {
-		// TODO Auto-generated method stub
 		Type t = env.find(e.getName());
 
 		if(t instanceof IntType || t instanceof BoolType
