@@ -339,6 +339,7 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 		e.arg2.accept(this, null); //then 
 		
 		if(hasElse) {
+			blocks.addInstruction(new GoTo("endif"));
 			blocks.addInstruction(new Label("else"));
 			e.arg3.accept(this, null); //else
 		}

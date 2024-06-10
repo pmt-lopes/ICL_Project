@@ -43,9 +43,14 @@ public class LetTest {
         
         second.setBindings(bindings2);
         
-        ASTAdd secondBody = new ASTAdd(new ASTAdd(id1, id2), id3);
+        //ASTAdd secondBody = new ASTAdd(new ASTAdd(id1, id2), id3);
+        ASTEq eq = new ASTEq(id3, new ASTInt(2));
+        ASTPrint p1 = new ASTPrint(new ASTInt(1));
+        ASTPrint p2 = new ASTPrint(new ASTInt(0));
+        ASTIf i = new ASTIf(eq, p1, p2);
+        ASTPrint secondBody = new ASTPrint(id3);
         
-        second.setBody(secondBody);
+        second.setBody(i);
         
         letExpression.setBody(second);
 
