@@ -290,7 +290,7 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 
 	@Override
 	public Void visit(ASTDeref e, Void env) {
-		blocks.fetch(e.getName(), e.getType());
+		blocks.fetchRef(e.getName(), e.getType());
 		return null;
 	}
 
@@ -428,7 +428,7 @@ public class CodeGen implements Exp.Visitor<Void, Void>{
 		String className = "mypackage/" + type.toString(); //ref_int or ref_bool
 		RefType t = (RefType) type;
 		String valueType = getJVMType(t.getInner());
-		if(t instanceof RefType) {
+		if(t.getInner() instanceof RefType) {
 			valueType = "L" + valueType;
 		}
 		String content = String.format("""

@@ -1,4 +1,4 @@
-package test;
+package main;
 
 import static org.junit.Assert.assertTrue;
 
@@ -7,17 +7,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
-
 import ast.*;
 import types.*;
 import compiler.CodeGen;
 
-public class LetTest {
+public class CompTest1 {
 
-    @Test
-    public void testWriteToFile() throws IOException {
-        
+    public static void main(String[] args) throws IOException {
+    	
+    	/*
+    	 * let
+				x = 2
+				y = 3
+			in
+				let
+					k = x+y
+				in
+					Print(x+y+k)
+    	 * 
+    	 * 
+    	 */
+    	
         //Let 
         ASTId id1 = new ASTId("x", new ASTInt(2));
         id1.setType(IntType.getInstance());
@@ -30,8 +40,8 @@ public class LetTest {
         bindings.add(id2);
 
         // Create an ASTLet expression
-        ASTLet letExpression = new ASTLet();
-        letExpression.setBindings(bindings);
+        ASTLet exp = new ASTLet();
+        exp.setBindings(bindings);
         
         ASTLet second = new ASTLet();
         
@@ -43,22 +53,18 @@ public class LetTest {
         
         second.setBindings(bindings2);
         
-        //ASTAdd secondBody = new ASTAdd(new ASTAdd(id1, id2), id3);
-        ASTEq eq = new ASTEq(id3, new ASTInt(2));
-        ASTPrint p1 = new ASTPrint(new ASTInt(1));
-        ASTPrint p2 = new ASTPrint(new ASTInt(0));
-        ASTIf i = new ASTIf(eq, p1, p2);
-        ASTPrint secondBody = new ASTPrint(id3);
+        ASTAdd a = new ASTAdd(new ASTAdd(id1, id2), id3);
+        ASTPrint secondBody = new ASTPrint(a);
         
         second.setBody(secondBody);
         
-        letExpression.setBody(second);
+        exp.setBody(second);
 
         // Define the output file name
         String filename = "Demo.j";
 
         // Generate the code and write to file
-        CodeGen.writeToFile(letExpression, null, filename);
+        CodeGen.writeToFile(exp, null, filename);
 
         // Compile using Jasmin
         Process process = new ProcessBuilder("java", "-jar", "jasmin.jar", "*.j").start();
