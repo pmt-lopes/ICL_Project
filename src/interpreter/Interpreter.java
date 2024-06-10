@@ -143,12 +143,6 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 	}
 
 	@Override
-	public Value visit(ASTReref e, Env<Value> env) {
-		Value value = e.getValue().accept(this, env);
-		return value;
-	}
-
-	@Override
 	public Value visit(ASTNew e, Env<Value> env) {
 		//String id = e.getName(); // TODO: should verify if is string, maybe do .accept() on StringValue?
 		//env.bind(id,new VoidValue());
@@ -229,7 +223,8 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 		List<Value> values = new ArrayList<>(2);
 		values.add(v1);
 		values.add(v2);
-		return new ValueList(values);
+		//return new ValueList(values);
+		return v2;
 	}
 
 	@Override

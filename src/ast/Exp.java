@@ -30,7 +30,6 @@ public interface Exp {
 		public T visit(ASTSeq e, E env);
 		public T visit(ASTWhile e, E env);
 		public T visit(ASTIf e, E env);
-		public T visit(ASTReref e, E env);
 		public T visit(ASTPrintln e, E env);
 		public T visit(ASTPrint e, E env);
 		public T visit(ASTNew e, E env);
