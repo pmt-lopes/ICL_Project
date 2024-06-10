@@ -3,213 +3,167 @@ options {
 }
 
 PARSER_BEGIN(Parser)
-
 package parser;
 import ast.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Parser {
-
 }
 
 PARSER_END(Parser)
 
-SKIP :
+TOKEN:
 {
-  " "
-| "\t"
-| "\r"
+  <NUM: (["0"-"9"])+>
+| <PLUS: "+">
+| <MINUS: "-">
+| <TIMES: "*">
+| <DIV: "/">
+| <LPAR: "(">
+| <RPAR: ")">
+| <EL: "\n">
+| <EQ: "=">
+| <NEQ: "!=">
+| <AND: "&&">
+| <OR: "||">
+| <NEG: "~">
+| <GR: ">" >
+| <LR: "<">
+| <GRE: ">=">
+| <LRE: "<=">
+| <TRUE: "true">
+| <FALSE: "false">
+| <LET: "let">
+| <IN: "in">
+| <IF: "if">
+| <THEN: "then">
+| <ELSE: "else">
+| <WHILE: "while">
+| <DO: "do">
+| <END: "end">
+| <SEMICOLON: ";">
+| <REF: ":=">
+| <REREF: "::=">
+| <DEREF: "!">
+| <NEW: "new">
+| <PRINT: "print">
+| <PRINTLN: "println">
+| <COMMA: ",">
+| <UNIT: "unit">
+| <INT: "int">
+| <BOOL: "bool">
+| <FUN: "fun">
+| <ARROW: "->">
+| <ID: ["a"-"z","A"-"Z"] (["a"-"z","A"-"Z","0"-"9"])*>
 }
 
-TOKEN :
+SKIP:
 {
-  < Num: (["0"-"9"]) + >
-  |
-  < PLUS : "+" >
-  |
-  < MINUS : "-">
-  |
-  < TIMES : "*">
-  |
-  < DIV : "/">
-  |
-  < LPAR : "(" >
-  |
-  < RPAR : ")" >
-  |
-  < EL: "\n" >
-  |
-  < EQ: "=" >
-  |
-  < NEQ: "!=" >
-  |
-  < AND: "&&" >
-  |
-  < OR: "||" >
-  |
-  < NEG: "~" >
-  |
-  < GR: ">" >
-  |
-  < LR: "<" >
-  |
-  < GRE: ">=" >
-  |
-  < LRE: "<=" >
-  |
-  < TRUE: "true" >
-  |
-  < FALSE: "false" >
-  |
-  < LET: "let" >
-  |
-  < IN: "in" >
-  |
-  < IF: "if" >
-  |
-  < THEN: "then" >
-  |
-  < ELSE: "else" >
-  |
-  < WHILE: "while" >
-  |
-  < DO: "do" >
-  |
-  < END: "end" >
-  |
-  < SEMICOLON: ";" >
-  |
-  < REF: ":=" >
-  |
-  < REREF: "::=" >
-  |
-  < DEREF: "!" >
-  |
-  < PRINT: "print" >
-  |
-  < PRINTLN: "println" >
-  |
-  < Id: ["a"-"z","A"-"Z"] ( ["a"-"z","A"-"Z","0"-"9"] )* >
-}
-
-Exp Start():
-{ Exp e; }
-{
-   e = decl() <EL>  { return e; }
-}
-
-Exp decl():
-{ List<Exp> bindings = new ArrayList<Exp>();Token id; Exp e, e1, e2; }
-{
-  <LET> (
-    id = <Id> <EQ> e1 = bexp() { bindings.add(new ASTId(id.image, e1)); }
-  )+ <IN> e2 = bexp() {
-    ASTLet letExpr = new ASTLet();
-    letExpr.setBindings(bindings);
-    letExpr.setBody(e2);
-    e = letExpr;
-    return e;
-    }
-  | e = bexp()
-  { return e;}
-    
-}
-
-//not tested from here
-//makes more sense for these expressions to be inside declarations then the opposite
-Exp cycle():
-{ Exp e1, e2, e3; }
-{
-  e1 = seq() { return e1; }
-  //should be bexp i think
-	| < WHILE > e1 = bexp() <DO > e2 = seq() <END >{ return new ASTWhile(e1, e2); }
-	| < IF > e1 = bexp() <THEN > e2 = seq() (<ELSE > e3 = seq() { return new ASTIf(e1, e2, e3); })? <END> { return new ASTIf(e1, e2); }
+  " " // Skipping whitespace characters
 }
 
 
-//Sequential instructions should be added around here i think
-//Referencing too
+
+Exp Start() : {
+  Exp exp;
+}
+{
+  exp=seq() <EL> { return exp; }
+}
 
 Exp seq():
-{ Exp e1, e2; }
+{ Token op;
+  Exp t1, t2; }
 {
-	e1 = ref() (
-	  <SEMICOLON> e2 = seq() { e1 = new ASTSeq(e1, e2); }
-	)?
-	{ return e1; }
-}
-
-Exp ref():
-{ Exp e1; Token x; }
-{
-  
-  x = <Id> <REF> e1 = bexp() { return new ASTRef(x.image, e1); }
-  | 
-  e1 = bexp() { return e1; } 
-}
-// Not tested until here
-
-Exp bexp():
-{ Exp e1, e2; }
-{
-  <NEG> e2 = bexp() { e1 = new ASTNeg(e2); }
-	| 
-  e1 = cmp() (
-	<AND> e2 = bexp() { e1 = new ASTAnd(e1, e2); }
-	| <OR> e2 = bexp() { e1 = new ASTOr(e1, e2); } )*
-  { return e1; }
-}
-
-Exp cmp():
-{ Exp e1, e2; }
-{
-  e1 = expr() (
-    <EQ> e2 = expr() { e1 = new ASTEq(e1, e2); }
-    | <GR> e2 = expr() { e1 = new ASTGr(e1, e2); }
-    | <LR> e2 = expr() { e1 = new ASTGr(e2, e1); }
-    | <GRE> e2 = expr() { e1 = new ASTGrE(e1, e2); }
-    | <LRE> e2 = expr() { e1 = new ASTGrE(e2, e1); }
-    | <NEQ> e2 = expr() { e1 = new ASTNEq(e1, e2); } 
-  )?
-  { return e1; }
-}
-
-Exp expr() :
-{ Exp e1, e2; }
-{
-   e1 = Term() 
-     ( <PLUS> e2 = expr() { e1 = new ASTAdd(e1,e2); }
-     | <MINUS> e2 = expr() { e1 = new ASTSub(e1,e2); } )*
-     { return e1; }
-}
-
-Exp Term() :
-{ Exp e1, e2; }
-{
-     e1 = Fact()
-     ( <TIMES> e2 = Term() { e1 = new ASTMult(e1,e2); }
-     | <DIV> e2 = Term() { e1 = new ASTDiv(e1,e2); } )*
-     { return e1; }
-}
-
-Exp Fact() :
-{ Token x; Exp e;}
-{
-  	x = <Num> { return new ASTInt(Integer.parseInt(x.image));}
- |
- 	<MINUS> x = <Num> { return new ASTInt(-Integer.parseInt(x.image));} 
- | 
- 	x = <TRUE> { return new ASTBool(Boolean.parseBoolean(x.image)); }
- |
- 	x = <FALSE> { return new ASTBool(Boolean.parseBoolean(x.image)); }
- |  
-	<LPAR> (e = expr() | e = decl()) <RPAR> { return e; }
- |
-	x = <Id> { return new ASTId(x.image, null);}
- |
-	< DEREF > x = < Id > { return new ASTDeref(x.image); }
+     t1=expression() (  op=<SEMICOLON>  t2=expression()
+               { t1 = new ASTSeq(t1,t2); }
+               ) *
+     { return t1; }
 }
 
 
+Exp expression() : {
+  Exp left, right;
+  Token op;
+}
+{
+  left = term() (
+    ( op = <PLUS> | op = <MINUS>
+    | op = <EQ> | op = <NEQ> | op = <GR> | op = <GRE> | op = <LR> | op = <LRE>
+    | op = <AND> | op = <OR> )
+    right = term()
+    {
+      switch(op.kind) {
+        case PLUS: left = new ASTAdd(left, right); break;
+        case MINUS: left = new ASTSub(left, right); break;
+        case EQ: left = new ASTEq(left, right); break;
+        case NEQ: left = new ASTNEq(left, right); break;
+        case GR: left = new ASTGr(left, right); break;
+        case GRE: left = new ASTGrE(left, right); break;
+        case LR: left = new ASTGr(right, left); break;
+        case LRE: left = new ASTGrE(right, left); break;
+        case AND: left = new ASTAnd(left, right); break;
+        case OR: left = new ASTOr(left, right); break;
+      }
+    }
+  )*
+  { return left; }
+}
+
+Exp term() : {
+  Exp primary, exp;
+  Token op;
+}
+{
+  primary=primaryExpression()  (
+    (op = <TIMES> | op = <DIV>) exp=primaryExpression()
+    {
+      switch(op.kind) {
+        case TIMES: return new ASTMult(primary, exp); break;
+        case DIV: return new ASTDiv(primary, exp); break;
+      }
+    }
+  )*
+  { return primary; }
+}
+
+
+Exp primaryExpression() : {
+  Token id;
+  Exp exp, exp1, exp2;
+  Exp exp3 = null;
+}
+{
+
+    <NUM> { return new ASTInt(Integer.parseInt(token.image)); }
+    |
+    <TRUE> { return new ASTBool(true); }
+    |
+    <FALSE> { return new ASTBool(false); }
+    |
+    id=<ID> ( <REF> exp3=expression() )? { return new ASTRef(id.image,exp3); }
+    |
+    <DEREF> id=<ID> { return new ASTDeref(id.image); }
+    |
+    <MINUS> <NUM> { return new ASTInt(-Integer.parseInt(token.image)); }
+    |
+    <NEG> exp=primaryExpression() { return new ASTNeg(exp); }
+    |
+    <LET> id=<ID> <EQ> exp1=seq() <IN> exp2=seq() <END>
+    { ASTLet let = new ASTLet(); let.addToken(id.image); let.addBinding(exp1); let.setBody(exp2); return let;}
+    |
+    <IF> exp=seq() <THEN> exp1=seq() ( <ELSE> exp3=seq() )? <END> { return new ASTIf(exp, exp1, exp3); }
+    |
+    <WHILE> exp1=seq() <DO> exp2=seq() <END> { return new ASTWhile(exp1, exp2); }
+    |
+    <PRINTLN> id=<ID> { return new ASTPrintln(id.image); }
+    |
+    <PRINT> id=<ID> { return new ASTPrint(id.image); }
+    |
+    <NEW> id=<ID> { return new ASTNew(id.image); }
+    |
+    <LPAR> (<RPAR> | exp3=expression() <RPAR>) { if(exp3 != null) return exp3; else return new ASTNull(); }
+
+}
 

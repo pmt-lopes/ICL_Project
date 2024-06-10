@@ -1,11 +1,8 @@
 package ast;
 
-import types.Type;
-
 public class ASTId implements Exp{
 	public String arg1;
 	public Exp arg2;
-	private Type type;
 	
 	public ASTId(String arg1, Exp arg2) {
 		this.arg1 = arg1;
@@ -17,15 +14,7 @@ public class ASTId implements Exp{
 		return v.visit(this, env);
 	}
 
-	@Override
-	public Type getType() {
-		return type;
+	public String toString(){
+		return arg1;
 	}
-
-	@Override
-	public void setType(Type t) {
-		this.type = t;
-	}
-
-
 }

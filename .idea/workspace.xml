@@ -6,8 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="9f0c5056-0892-493d-b29b-2c0d9552a991" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/Exp$Visitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/Exp$Visitor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interpreter/Interpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/interpreter/Interpreter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Console.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Console.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/IntType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/IntType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/RefType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/RefType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/TypeChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/TypeChecker.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +32,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -36,24 +44,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Console.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/pmtbl/Desktop/icl_project/ICL_Project&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Console.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/lowdon/Documents/2osem2324/icl/example/Interpreter-Compiler",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/parser" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="types" />
+      <recent name="ast" />
+      <recent name="values" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Console" type="Application" factoryName="Application" editBeforeRun="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Console" />
@@ -72,8 +90,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
       </set>
     </attachedChunks>
   </component>
@@ -88,6 +106,9 @@
       <workItem from="1713984748135" duration="3493000" />
       <workItem from="1714150995381" duration="2313000" />
       <workItem from="1714155728751" duration="5044000" />
+      <workItem from="1717527636667" duration="8932000" />
+      <workItem from="1717612175984" duration="50979000" />
+      <workItem from="1718039991828" duration="8176000" />
     </task>
     <servers />
   </component>
@@ -104,5 +125,36 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/interpreter/Interpreter.java</url>
+          <line>231</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/interpreter/Interpreter.java</url>
+          <line>192</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/types/TypeChecker.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/types/TypeChecker.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <inline-watch fileUrl="file://$PROJECT_DIR$/src/interpreter/Interpreter.java" line="112">
+        <watch expression="v" language="JAVA" />
+      </inline-watch>
+    </watches-manager>
   </component>
 </project>
