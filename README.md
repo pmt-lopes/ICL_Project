@@ -29,4 +29,6 @@ Accepted Syntax + Deviations
 
 Extra Details
 
-    //Escreve aqui quem fez o quê se quiseres se não podes apagar
+  //Escreve aqui quem fez o quê se quiseres
+
+  While not implemented, the functionalities of the compiler for the syntax of references and whiles were written
