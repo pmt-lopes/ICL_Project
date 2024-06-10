@@ -11,7 +11,7 @@ How to run programs:
 
     console (add details on how to run it)
 
-    CompTest1 and ComptTest2 are test the compiler with predefined expressions, variable values can be changed in source files
+    CompTest1 and ComptTest2 are test the compiler with predefined expressions, variable values can be changed in source files (package main)
     CompTest1/CompTest2 =>  java CompTest1 / java CompTest2 
     
 Accepted Syntax + Deviations
