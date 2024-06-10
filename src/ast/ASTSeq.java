@@ -11,8 +11,7 @@ public class ASTSeq implements Exp{
 
 	@Override
 	public <T, E> T accept(Visitor<T, E> v, E env) {
-		// TODO Auto-generated method stub
-		return null;
+		return v.visit(this, env);
 	}
 
 }

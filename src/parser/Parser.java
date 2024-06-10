@@ -36,18 +36,6 @@ public class Parser implements ParserConstants {
     throw new Error("Missing return statement in function");
   }
 
-//Exp ref() :
-//{Token n;
-//  Exp q1, q2;}
-//{
-//     q1 = expression() ( <REF> q2=expression()
-//    			 {
-//                    q1 = new ASTRef(q1,q2);
-//                 }
-//                  )?
-//     { return q1; }
-//
-//}
   final public Exp expression() throws ParseException {
   Exp left, right;
   Token op;
@@ -162,20 +150,6 @@ public class Parser implements ParserConstants {
     throw new Error("Missing return statement in function");
   }
 
-//Exp simpleExpression() : {
-//  Exp primary, exp; Token op;
-//}
-//{
-//  primary=primaryExpression()
-//  (
-//    <REF> exp=expression() { return new ASTRef(primary, exp); }
-//    |
-//    <REREF> exp=expression() { return new ASTReref(primary, exp); }
-//    |
-//    <DEREF> exp = expression() { return new ASTDeref(exp); }
-//  )*
-//  { return primary; }
-//}
   final public Exp primaryExpression() throws ParseException {
   Token id;
   Exp exp, exp1, exp2;

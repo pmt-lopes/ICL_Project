@@ -5,13 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f0c5056-0892-493d-b29b-2c0d9552a991" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/types/VoidType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTSeq.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTSeq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/ASTSeq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/ASTSeq.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/Exp$Visitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/Exp$Visitor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ast/Exp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/Exp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interpreter/Interpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/interpreter/Interpreter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interpreter/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interpreter/Interpreter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/Parser.jj" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.jj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/BoolType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/BoolType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/types/TypeChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/TypeChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/values/VoidValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/values/VoidValue.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +71,7 @@
       <recent name="$PROJECT_DIR$/src/parser" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="types" />
       <recent name="ast" />
       <recent name="values" />
     </key>
@@ -106,7 +112,7 @@
       <workItem from="1714155728751" duration="5044000" />
       <workItem from="1717527636667" duration="8932000" />
       <workItem from="1717612175984" duration="50979000" />
-      <workItem from="1718039991828" duration="2003000" />
+      <workItem from="1718039991828" duration="6332000" />
     </task>
     <servers />
   </component>
@@ -127,11 +133,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/interpreter/Interpreter.java</url>
-          <line>137</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/interpreter/Interpreter.java</url>
           <line>231</line>

@@ -236,7 +236,7 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 		BoolValue isTrue = (BoolValue) condition.accept(this, env);
 		//System.out.println("IS COND TRUE? " + isTrue.getValue());
 		Value result = null;
-		System.out.println("DEBUG:IS WHILE CONDITION TRUE? " + isTrue.getValue());
+		//System.out.println("DEBUG:IS WHILE CONDITION TRUE? " + isTrue.getValue());
 
 		while(isTrue.getValue()){
 			result = body.accept(this,env);
@@ -245,7 +245,7 @@ public class Interpreter implements ast.Exp.Visitor<Value,Env<Value>>{
 				env.bind(refBody.getName(), refBody.getValue().accept(this, env)); //bind new value to var in case of ASTRef
 			}
 			isTrue = (BoolValue) condition.accept(this, env); //update condition with regard to environment
-			System.out.println("DEBUG:IS WHILE CONDITION TRUE? " + isTrue.getValue());
+			//System.out.println("DEBUG:IS WHILE CONDITION TRUE? " + isTrue.getValue());
 		}
 		if(result != null){
 			return result;

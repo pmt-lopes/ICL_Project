@@ -22,7 +22,6 @@ public interface Exp {
 		public T visit(ASTGr e, E env);
 		public T visit(ASTGrE e, E env);
 		public T visit(ASTNeg e, E env);
-		public T visit(ASTId e, E env);
 		public T visit(ASTLet e, E env);
 		public T visit(ASTRef e, E env);
 		public T visit(ASTDeref e, E env);
@@ -34,6 +33,7 @@ public interface Exp {
 		public T visit(ASTPrint e, E env);
 		public T visit(ASTNew e, E env);
 		public T visit(ASTNull e, E env);
+		public T visit(ASTId e, E env);
 	}
 	
 	public <T,E> T accept(Visitor<T,E> v, E env);
